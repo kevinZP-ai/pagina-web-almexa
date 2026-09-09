@@ -151,7 +151,7 @@ export const casosUso = [
 export const qa = {
   normas: [
     { sigla: 'ISO/IEC 25010', proposito: 'Calidad de producto de software: define las características de un software funcional, fiable, eficiente y seguro; guía los requisitos no funcionales y las pruebas.', principal: true },
-    { sigla: 'ISO 9001', proposito: 'Sistemas de gestión de la calidad: normaliza el proceso de desarrollo y documentación, garantizando trazabilidad y mejora continua.', principal: false },
+    { sigla: 'ISO/IEC 29148', proposito: 'Ingeniería de requisitos: normaliza la especificación desde la elicitación hasta la validación, garantizando trazabilidad requisito-diseño-prueba.', principal: false },
     { sigla: 'ISO/IEC 27001', proposito: 'Seguridad de la información: establece controles para proteger los datos personales y la información tratada por el sistema, alineada con la Ley 1581 de 2012.', principal: false },
   ],
   estrategia: [
@@ -255,4 +255,5 @@ export const versiones = [
   { version: '2.2', descripcion: 'Duración del proyecto ajustada al calendario académico de la ficha 3407799 (18 meses) y presupuesto recalculado: servicios proyectados a 18 meses, imprevistos del 10 % y total de $30.004.700 COP.', autor: 'Grupo 1', fecha: '06/09/2026' },
   { version: '2.3', descripcion: 'Correcciones finales del trimestre: sección 5.1 renombrada a Software con aclaración de costos de licencias, incorporación de normas ISO (25010, 9001, 27001) y matriz de riesgos resumida.', autor: 'Grupo 1', fecha: '07/09/2026' },
   { version: '2.4', descripcion: 'Cierre del proyecto: versión final con diagrama entidad-relación (DER) y esquema físico en la sección 4.2.1, tabla de riesgos con 14 riesgos T1-T14, pruebas y aseguramiento de la calidad (QA), tabla de artefactos y diagramas alineada a los archivos finales, portada actualizada a la fecha de entrega y referencias bibliográficas ampliadas (ISO 9001, ISO/IEC 27001 y DER).', autor: 'Grupo 1', fecha: '08/09/2026' },
+  { version: '2.5', descripcion: 'Sustitución de la norma ISO 9001 por la ISO/IEC/IEEE 29148 (ingeniería de requisitos) en la sección 6 y en las referencias bibliográficas, alineando la documentación con el SRS.', autor: 'Grupo 1', fecha: '09/09/2026' },
 ]
