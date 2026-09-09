@@ -1,0 +1,22 @@
+@startuml
+title RF3 - Gestión de Proveedores
+
+|Encargado de Compras|
+start
+:Registrar proveedor (ERF3.1);
+:Consultar proveedor (ERF3.2);
+
+if (¿Requiere actualizar datos del proveedor?) then (sí)
+  :Modificar proveedor (ERF3.3);
+else (no)
+endif
+
+:Asociar proveedor a productos (ERF3.5);
+
+if (¿El proveedor deja de operar con la empresa?) then (sí)
+  :Desactivar proveedor (ERF3.4);
+else (no)
+endif
+
+stop
+@enduml

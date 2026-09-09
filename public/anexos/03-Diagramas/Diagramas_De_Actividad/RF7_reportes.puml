@@ -1,0 +1,42 @@
+@startuml
+title RF7 - Reportes e Informes del Sistema
+
+|Administrador|
+start
+:Seleccionar tipo de reporte;
+
+switch (Tipo de reporte)
+case (Movimientos generales)
+  :Generar reporte de movimientos generales (ERF7.1);
+case (Entradas)
+  :Generar reporte de entradas al inventario (ERF7.2);
+case (Salidas)
+  :Generar reporte de salidas del inventario (ERF7.3);
+case (Estado actual)
+  :Generar reporte de estado actual del inventario (ERF7.4);
+case (Inconsistencias)
+  :Generar reporte de inconsistencias y ajustes manuales (ERF7.5);
+case (Consolidado por período)
+  :Generar reporte consolidado por período (ERF7.6);
+case (Sin movimiento)
+  :Generar reporte de productos sin movimiento (ERF7.7);
+case (Rutas y recepciones)
+  :Generar reporte de rutas y recepciones (ERF7.8);
+case (Proveedores)
+  :Generar reporte de proveedores e historial de entregas (ERF7.9);
+case (Stock bajo o agotado)
+  :Generar reporte de productos agotados o con stock bajo (ERF7.11);
+endswitch
+
+|Sistema|
+:Consolidar información solicitada;
+
+|Administrador|
+if (¿Formato de exportación? (ERF7.10)) then (PDF)
+  :Exportar reporte en formato PDF;
+else (Excel)
+  :Exportar reporte en formato Excel;
+endif
+
+stop
+@enduml

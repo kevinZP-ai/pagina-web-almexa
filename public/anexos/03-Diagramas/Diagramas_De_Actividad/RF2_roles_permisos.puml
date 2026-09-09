@@ -1,0 +1,22 @@
+@startuml
+title RF2 - Gestión de Roles y Permisos
+
+|Administrador|
+start
+:Definir roles del sistema (ERF2.1);
+:Asignar rol a usuario (ERF2.2);
+:Configurar materiales favoritos por perfil de usuario (ERF2.5);
+
+|Usuario|
+:Solicitar acceso a un módulo del sistema;
+
+|Sistema|
+if (¿El rol tiene permiso sobre el módulo? (ERF2.3)) then (sí)
+  :Conceder acceso al módulo;
+else (no)
+  :Denegar acceso y mostrar mensaje;
+endif
+:Registrar evento en bitácora de accesos (ERF2.4);
+
+stop
+@enduml

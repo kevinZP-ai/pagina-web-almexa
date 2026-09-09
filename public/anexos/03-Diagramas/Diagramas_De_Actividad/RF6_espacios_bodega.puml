@@ -1,0 +1,22 @@
+@startuml
+title RF6 - Gestión de Espacios y Bodega
+
+|Encargado de Bodega|
+start
+:Registrar espacio de almacenamiento (ERF6.1);
+:Registrar equipos de bodega (ERF6.3);
+:Asignar productos a espacios (ERF6.2);
+:Consultar ocupación de espacios (ERF6.6);
+
+if (¿El espacio requiere modificación o desactivación?) then (sí)
+  :Modificar y desactivar espacio (ERF6.4);
+else (no)
+endif
+
+if (¿Un equipo debe eliminarse?) then (sí)
+  :Eliminar equipo (ERF6.5);
+else (no)
+endif
+
+stop
+@enduml

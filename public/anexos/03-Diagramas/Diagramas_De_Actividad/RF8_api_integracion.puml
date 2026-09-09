@@ -1,0 +1,31 @@
+@startuml
+title RF8 - API de Integración Externa
+
+|Sistema Externo|
+start
+:Enviar solicitud a la API incluyendo token (ERF8.3);
+
+|Sistema|
+if (¿Token válido?) then (no)
+  :Rechazar solicitud (401 No autorizado);
+  stop
+else (sí)
+endif
+
+|Sistema Externo|
+switch (Tipo de consulta)
+case (Productos y stock)
+  :Consultar endpoint de productos y stock (ERF8.1);
+case (Precios)
+  :Consultar endpoint de precios (ERF8.2);
+endswitch
+
+|Sistema|
+:Procesar solicitud;
+:Responder con datos en formato JSON;
+
+|Administrador|
+:Mantener documentación de la API bajo estándar OpenAPI (ERF8.4);
+
+stop
+@enduml

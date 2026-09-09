@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALMEXA · Gestión de Inventario y Bodega</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#14181D;
+  --panel:#1C222A;
+  --panel-2:#232B34;
+  --accent:#E3A22E;
+  --accent-2:#3F9C8B;
+  --danger:#D9614A;
+  --text:#EDF0F3;
+  --muted:#8B95A3;
+  --border:#2E3742;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+.mono{font-family:'IBM Plex Mono',monospace;}
+h1,h2,h3,.disp{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+  margin:0;
+}
+/* Login */
+#loginScreen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:
+    repeating-linear-gradient(135deg, rgba(227,162,46,0.05) 0 18px, transparent 18px 36px),
+    var(--bg);
+}
+.login-card{
+  width:360px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:32px;
+  position:relative;
+}
+.login-tag{
+  position:absolute;
+  top:-14px; left:24px;
+  background:var(--accent);
+  color:#14181D;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:0.08em;
+  padding:4px 10px;
+  transform:rotate(-2deg);
+  border-radius:3px;
+}
+.login-card h1{font-size:30px;color:var(--text);margin-bottom:2px;}
+.login-card .sub{color:var(--muted);font-size:13px;margin-bottom:24px;}
+label{display:block;font-size:12px;color:var(--muted);margin:14px 0 6px;text-transform:uppercase;letter-spacing:0.05em;}
+select, input{
+  width:100%;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:6px;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+}
+select:focus, input:focus{outline:2px solid var(--accent); outline-offset:1px;}
+.btn{
+  cursor:pointer;
+  border:none;
+  border-radius:6px;
+  padding:10px 16px;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:13px;
+  transition:transform .08s ease, opacity .15s ease;
+}
+.btn:active{transform:scale(0.97);}
+.btn-primary{background:var(--accent); color:#181008;}
+.btn-primary:hover{opacity:0.9;}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text);}
+.btn-ghost:hover{border-color:var(--accent);}
+.btn-danger{background:var(--danger);color:#1c0a06;}
+.btn-sm{padding:6px 10px;font-size:12px;}
+.btn:focus-visible{outline:2px solid var(--accent-2); outline-offset:2px;}
+#enterBtn{width:100%;margin-top:22px;}
+
+/* App shell */
+#app{display:none;min-height:100vh;}
+.shell{display:flex;min-height:100vh;}
+.sidebar{
+  width:220px;
+  background:var(--panel);
+  border-right:1px solid var(--border);
+  padding:20px 0;
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+}
+.brand{padding:0 20px 18px;border-bottom:1px solid var(--border);margin-bottom:10px;}
+.brand h1{font-size:22px;color:var(--accent);letter-spacing:0.08em;}
+.brand .sub{color:var(--muted);font-size:11px;margin-top:2px;}
+.navitem{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 20px;
+  cursor:pointer;
+  color:var(--muted);
+  font-size:14px;
+  border-left:3px solid transparent;
+  position:relative;
+}
+.navitem .tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  color:var(--muted);
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  padding:1px 5px;
+  border-radius:3px;
+}
+.navitem:hover{color:var(--text); background:var(--panel-2);}
+.navitem.active{color:var(--text); border-left-color:var(--accent); background:var(--panel-2);}
+.navitem.active .tag{border-color:var(--accent); color:var(--accent);}
+.navbadge{
+  margin-left:auto;
+  background:var(--danger);
+  color:#1c0a06;
+  font-size:10px;
+  font-weight:700;
+  padding:1px 6px;
+  border-radius:10px;
+}
+.sidebar-foot{margin-top:auto;padding:14px 20px 0;border-top:1px solid var(--border);}
+.userchip{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);}
+.avatar{width:26px;height:26px;border-radius:50%;background:var(--accent-2);display:flex;align-items:center;justify-content:center;color:#0a1613;font-weight:700;font-size:12px;flex-shrink:0;}
+.logout{margin-top:10px;width:100%;}
+
+.main{flex:1;padding:26px 34px;overflow-y:auto;}
+.topbar{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:22px;flex-wrap:wrap;gap:10px;}
+.topbar h2{font-size:26px;}
+.topbar .desc{color:var(--muted);font-size:13px;margin-top:3px;}
+.panel{display:none;}
+.panel.active{display:block;animation:fade .2s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+.grid{display:grid;gap:16px;}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+.grid-2{grid-template-columns:repeat(2,1fr);}
+@media(max-width:1000px){.grid-4{grid-template-columns:repeat(2,1fr);} .grid-2{grid-template-columns:1fr;}}
+@media(max-width:640px){.grid-4{grid-template-columns:1fr;}}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:18px;
+}
+.stat .label{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;}
+.stat .num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:34px;margin-top:4px;}
+.stat.warn .num{color:var(--danger);}
+.stat.ok .num{color:var(--accent-2);}
+
+.toolbar{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center;}
+.toolbar input, .toolbar select{width:auto;min-width:160px;}
+.toolbar .spacer{flex:1;}
+
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{
+  text-align:left;
+  color:var(--muted);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  padding:8px 10px;
+  border-bottom:1px solid var(--border);
+}
+td{padding:10px;border-bottom:1px solid var(--border);}
+tr:hover td{background:rgba(255,255,255,0.02);}
+.tablewrap{overflow-x:auto;}
+
+.tag-badge{
+  display:inline-block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  padding:3px 8px;
+  border-radius:4px;
+  border:1px solid var(--border);
+}
+.badge-ok{background:rgba(63,156,139,0.15); color:var(--accent-2); border-color:rgba(63,156,139,0.4);}
+.badge-warn{background:rgba(217,97,74,0.15); color:var(--danger); border-color:rgba(217,97,74,0.4);}
+.badge-idle{background:rgba(139,149,163,0.12); color:var(--muted);}
+.badge-amber{background:rgba(227,162,46,0.15); color:var(--accent); border-color:rgba(227,162,46,0.4);}
+
+.shelftag{
+  display:inline-block;
+  background:var(--accent);
+  color:#14181D;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:0.05em;
+  padding:2px 8px;
+  border-radius:3px;
+  transform:rotate(-1.5deg);
+}
+
+.modal-bg{
+  display:none;
+  position:fixed; inset:0;
+  background:rgba(10,13,16,0.65);
+  align-items:center; justify-content:center;
+  z-index:50;
+  padding:20px;
+}
+.modal-bg.active{display:flex;}
+.modal{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  width:420px; max-width:100%;
+  padding:24px;
+  max-height:88vh;
+  overflow-y:auto;
+}
+.modal h3{font-size:20px;margin-bottom:14px;}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+.empty{
+  text-align:center;
+  padding:40px 20px;
+  color:var(--muted);
+  font-size:13px;
+}
+.toast{
+  position:fixed; bottom:20px; right:20px;
+  background:var(--panel-2);
+  border:1px solid var(--accent-2);
+  color:var(--text);
+  padding:12px 18px;
+  border-radius:8px;
+  font-size:13px;
+  transform:translateY(20px);
+  opacity:0;
+  transition:all .25s ease;
+  z-index:80;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+.hint{color:var(--muted);font-size:12px;margin-top:6px;}
+.divider{height:1px;background:var(--border);margin:18px 0;}
+.apibox{
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px 16px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12.5px;
+  color:var(--accent-2);
+  margin-bottom:10px;
+  overflow-x:auto;
+  white-space:pre;
+}
+.roleview{display:none;}
+.hidden{display:none !important;}
+::-webkit-scrollbar{width:9px;height:9px;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:5px;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="login-tag">A-01 · ACCESO</div>
+    <h1>ALMEXA</h1>
+    <div class="sub">Gestión de inventario, bodega y proveedores</div>
+    <label>Usuario</label>
+    <select id="loginUser">
+      <option value="1">Kevin Ríos — Administrador</option>
+      <option value="2">Laura Gómez — Operario de Bodega</option>
+      <option value="3">Sergio Páez — Consulta / Auditoría</option>
+    </select>
+    <label>Contraseña</label>
+    <input type="password" id="loginPass" placeholder="••••••••" value="demo1234">
+    <div class="hint">Las contraseñas se almacenan cifradas (hash) en el sistema real.</div>
+    <button class="btn btn-primary" id="enterBtn" onclick="doLogin()">Iniciar sesión</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+<div class="shell">
+  <div class="sidebar">
+    <div class="brand"><h1>ALMEXA</h1><div class="sub">v1 · Prototipo funcional</div></div>
+    <div class="navitem active" data-panel="dashboard" onclick="showPanel('dashboard',this)"><span class="tag">00</span> Panel general</div>
+    <div class="navitem" data-panel="productos" onclick="showPanel('productos',this)"><span class="tag">01</span> Inventario <span class="navbadge hidden" id="badgeStock">0</span></div>
+    <div class="navitem" data-panel="bodega" onclick="showPanel('bodega',this)"><span class="tag">02</span> Espacios / Bodega</div>
+    <div class="navitem" data-panel="proveedores" onclick="showPanel('proveedores',this)"><span class="tag">03</span> Proveedores</div>
+    <div class="navitem" data-panel="rutas" onclick="showPanel('rutas',this)"><span class="tag">04</span> Rutas y transporte</div>
+    <div class="navitem roleview" data-role="1" data-panel="usuarios" onclick="showPanel('usuarios',this)"><span class="tag">05</span> Usuarios y roles</div>
+    <div class="navitem" data-panel="reportes" onclick="showPanel('reportes',this)"><span class="tag">06</span> Reportes</div>
+    <div class="navitem roleview" data-role="1" data-panel="api" onclick="showPanel('api',this)"><span class="tag">07</span> API externa</div>
+    <div class="sidebar-foot">
+      <div class="userchip"><div class="avatar" id="avatarLetter">K</div><div><div id="chipName" style="color:var(--text);font-weight:600;">—</div><div id="chipRole">—</div></div></div>
+      <button class="btn btn-ghost btn-sm logout" onclick="doLogout()">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div class="panel active" id="panel-dashboard">
+      <div class="topbar"><div><h2>Panel general del inventario</h2><div class="desc">Estado en tiempo real de stock, bodega y operaciones.</div></div></div>
+      <div class="grid grid-4" style="margin-bottom:18px;">
+        <div class="card stat"><div class="label">Productos activos</div><div class="num" id="statProductos">0</div></div>
+        <div class="card stat warn"><div class="label">Alertas de stock bajo</div><div class="num" id="statAlertas">0</div></div>
+        <div class="card stat ok"><div class="label">Movimientos hoy</div><div class="num" id="statMov">0</div></div>
+        <div class="card stat"><div class="label">Ocupación de bodega</div><div class="num" id="statOcup">0%</div></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3 style="margin-bottom:12px;">Alertas de stock</h3>
+          <div id="dashAlertList"></div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:12px;">Últimos movimientos</h3>
+          <div id="dashMovList"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div class="panel" id="panel-productos">
+      <div class="topbar">
+        <div><h2>Gestión de inventario</h2><div class="desc">Registro, existencias, caducidad y movimientos por producto.</div></div>
+        <button class="btn btn-primary" onclick="openProductModal()">+ Registrar producto</button>
+      </div>
+      <div class="toolbar">
+        <input type="text" id="prodSearch" placeholder="Buscar por nombre o código..." oninput="renderProductos()">
+        <select id="prodFilter" onchange="renderProductos()">
+          <option value="">Todas las categorías</option>
+        </select>
+        <div class="spacer"></div>
+        <span class="hint mono">Tiempo de respuesta objetivo: &lt;1s</span>
+      </div>
+      <div class="card tablewrap">
+        <table>
+          <thead><tr><th>Código</th><th>Producto</th><th>Categoría</th><th>Stock</th><th>Mín.</th><th>Caducidad</th><th>Ubicación</th><th>Estado</th><th></th></tr></thead>
+          <tbody id="prodTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- BODEGA -->
+    <div class="panel" id="panel-bodega">
+      <div class="topbar">
+        <div><h2>Espacios y bodega</h2><div class="desc">Zonas de almacenamiento, capacidad y equipos asociados.</div></div>
+        <button class="btn btn-primary" onclick="openSpaceModal()">+ Registrar espacio</button>
+      </div>
+      <div class="grid grid-4" id="spaceCards"></div>
+    </div>
+
+    <!-- PROVEEDORES -->
+    <div class="panel" id="panel-proveedores">
+      <div class="topbar">
+        <div><h2>Proveedores</h2><div class="desc">Registro y asociación de proveedores a productos.</div></div>
+        <button class="btn btn-primary" onclick="openProviderModal()">+ Registrar proveedor</button>
+      </div>
+      <div class="card tablewrap">
+        <table>
+          <thead><tr><th>NIT</th><th>Proveedor</th><th>Contacto</th><th>Productos asociados</th><th>Estado</th><th></th></tr></thead>
+          <tbody id="provTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RUTAS -->
+    <div class="panel" id="panel-rutas">
+      <div class="topbar">
+        <div><h2>Rutas y transporte</h2><div class="desc">Seguimiento de rutas, llegadas estimadas y estado de envío.</div></div>
+        <button class="btn btn-primary" onclick="openRouteModal()">+ Registrar ruta</button>
+      </div>
+      <div class="card tablewrap">
+        <table>
+          <thead><tr><th>Ruta</th><th>Origen → Destino</th><th>Llegada estimada</th><th>Productos</th><th>Estado</th><th></th></tr></thead>
+          <tbody id="routeTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- USUARIOS -->
+    <div class="panel" id="panel-usuarios">
+      <div class="topbar">
+        <div><h2>Usuarios y roles</h2><div class="desc">Administración de cuentas, roles y control de acceso.</div></div>
+        <button class="btn btn-primary" onclick="openUserModal()">+ Registrar usuario</button>
+      </div>
+      <div class="card tablewrap">
+        <table>
+          <thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Estado</th><th></th></tr></thead>
+          <tbody id="userTableBody"></tbody>
+        </table>
+      </div>
+      <div class="divider"></div>
+      <div class="card">
+        <h3 style="margin-bottom:10px;">Bitácora de accesos</h3>
+        <div id="logList" class="mono" style="font-size:12px;color:var(--muted);line-height:1.9;"></div>
+      </div>
+    </div>
+
+    <!-- REPORTES -->
+    <div class="panel" id="panel-reportes">
+      <div class="topbar"><div><h2>Reportes del sistema</h2><div class="desc">Genera y exporta reportes de inventario, movimientos y proveedores.</div></div></div>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3 style="margin-bottom:10px;">Generar reporte</h3>
+          <label>Tipo de reporte</label>
+          <select id="repType">
+            <option value="estado">Estado actual del inventario</option>
+            <option value="entradas">Entradas al inventario</option>
+            <option value="salidas">Salidas del inventario</option>
+            <option value="sinmov">Productos sin movimiento</option>
+            <option value="bajo">Productos agotados o con stock bajo</option>
+            <option value="proveedores">Proveedores e historial</option>
+            <option value="rutas">Rutas y recepciones</option>
+          </select>
+          <div style="display:flex;gap:10px;margin-top:16px;">
+            <button class="btn btn-primary" onclick="generateReport()">Generar</button>
+            <button class="btn btn-ghost" onclick="exportReport('pdf')">Exportar PDF</button>
+            <button class="btn btn-ghost" onclick="exportReport('excel')">Exportar Excel (CSV)</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:10px;">Resumen del período</h3>
+          <div id="reportSummary" class="hint">Selecciona un tipo de reporte y presiona «Generar».</div>
+        </div>
+      </div>
+      <div class="card tablewrap" style="margin-top:16px;">
+        <table><thead id="reportHead"></thead><tbody id="reportBody"></tbody></table>
+      </div>
+    </div>
+
+    <!-- API -->
+    <div class="panel" id="panel-api">
+      <div class="topbar"><div><h2>API de integración externa</h2><div class="desc">Endpoints expuestos bajo estándar OpenAPI, autenticados por token.</div></div></div>
+      <div class="card" style="margin-bottom:16px;">
+        <h3 style="margin-bottom:10px;">GET /api/v1/productos</h3>
+        <div class="apibox">Authorization: Bearer &lt;token&gt;
+
+Respuesta 200:
+{
+  "codigo": "PRD-1042",
+  "nombre": "Guantes de nitrilo caja x100",
+  "stock": 340,
+  "stockMinimo": 50
+}</div>
+        <span class="tag-badge badge-ok">Consulta de stock — activo</span>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:10px;">GET /api/v1/precios/{codigo}</h3>
+        <div class="apibox">Authorization: Bearer &lt;token&gt;
+
+Respuesta 200:
+{
+  "codigo": "PRD-1042",
+  "precio": 38500,
+  "moneda": "COP"
+}</div>
+        <span class="tag-badge badge-ok">Consulta de precios — activo</span>
+      </div>
+      <div class="hint" style="margin-top:10px;">Documentación completa disponible bajo especificación OpenAPI 3.0 (/api/v1/openapi.json).</div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-bg" id="modalProduct"><div class="modal">
+  <h3 id="pmTitle">Registrar producto</h3>
+  <input type="hidden" id="pId">
+  <label>Código</label><input type="text" id="pCode" placeholder="PRD-1050">
+  <label>Nombre</label><input type="text" id="pName" placeholder="Nombre del producto">
+  <div class="row2">
+    <div><label>Categoría</label><input type="text" id="pCat" placeholder="Ej: Aseo"></div>
+    <div><label>Proveedor</label><select id="pProv"></select></div>
+  </div>
+  <div class="row2">
+    <div><label>Stock actual</label><input type="number" id="pStock" value="0"></div>
+    <div><label>Stock mínimo</label><input type="number" id="pMin" value="0"></div>
+  </div>
+  <div class="row2">
+    <div><label>Caducidad</label><input type="date" id="pExp"></div>
+    <div><label>Ubicación</label><select id="pLoc"></select></div>
+  </div>
+  <div class="modal-actions">
+    <button class="btn btn-ghost" onclick="closeModal('modalProduct')">Cancelar</button>
+    <button class="btn btn-primary" onclick="saveProduct()">Guardar</button>
+  </div>
+</div></div>
+
+<div class="modal-bg" id="modalMove"><div class="modal">
+  <h3 id="mvTitle">Registrar movimiento</h3>
+  <input type="hidden" id="mvId">
+  <label>Tipo de movimiento</label>
+  <select id="mvType"><option value="entrada">Entrada</option><option value="salida">Salida</option></select>
+  <label>Cantidad</label><input type="number" id="mvQty" value="1" min="1">
+  <div class="hint" id="mvHint"></div>
+  <div class="modal-actions">
+    <button class="btn btn-ghost" onclick="closeModal('modalMove')">Cancelar</button>
+    <button class="btn btn-primary" onclick="saveMovement()">Confirmar</button>
+  </div>
+</div></div>
+
+<div class="modal-bg" id="modalProvider"><div class="modal">
+  <h3>Registrar proveedor</h3>
+  <label>NIT</label><input type="text" id="prNit" placeholder="900.123.456-7">
+  <label>Nombre</label><input type="text" id="prName" placeholder="Razón social">
+  <label>Contacto</label><input type="text" id="prContact" placeholder="Teléfono o correo">
+  <div class="modal-actions">
+    <button class="btn btn-ghost" onclick="closeModal('modalProvider')">Cancelar</button>
+    <button class="btn btn-primary" onclick="saveProvider()">Guardar</button>
+  </div>
+</div></div>
+
+<div class="modal-bg" id="modalRoute"><div class="modal">
+  <h3>Registrar ruta</h3>
+  <label>Nombre de ruta</label><input type="text" id="rtName" placeholder="Ruta Neiva - Bogotá">
+  <div class="row2">
+    <div><label>Origen</label><input type="text" id="rtOrigin"></div>
+    <div><label>Destino</label><input type="text" id="rtDest"></div>
+  </div>
+  <label>Fecha estimada de llegada</label><input type="date" id="rtEta">
+  <label>Productos asociados (separados por coma)</label><input type="text" id="rtProds" placeholder="PRD-1042, PRD-1050">
+  <div class="modal-actions">
+    <button class="btn btn-ghost" onclick="closeModal('modalRoute')">Cancelar</button>
+    <button class="btn btn-primary" onclick="saveRoute()">Guardar</button>
+  </div>
+</div></div>
+
+<div class="modal-bg" id="modalSpace"><div class="modal">
+  <h3>Registrar espacio de bodega</h3>
+  <label>Nombre / código de espacio</label><input type="text" id="spName" placeholder="Estante B-03">
+  <label>Capacidad (unidades)</label><input type="number" id="spCap" value="100">
+  <div class="modal-actions">
+    <button class="btn btn-ghost" onclick="closeModal('modalSpace')">Cancelar</button>
+    <button class="btn btn-primary" onclick="saveSpace()">Guardar</button>
+  </div>
+</div></div>
+
+<div class="modal-bg" id="modalUser"><div class="modal">
+  <h3>Registrar usuario</h3>
+  <label>Nombre completo</label><input type="text" id="usName">
+  <label>Correo</label><input type="email" id="usEmail">
+  <label>Rol</label>
+  <select id="usRole"><option value="Administrador">Administrador</option><option value="Operario de Bodega">Operario de Bodega</option><option value="Consulta / Auditoría">Consulta / Auditoría</option></select>
+  <div class="modal-actions">
+    <button class="btn btn-ghost" onclick="closeModal('modalUser')">Cancelar</button>
+    <button class="btn btn-primary" onclick="saveUser()">Guardar</button>
+  </div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= ESTADO EN MEMORIA (simula base de datos) ================= */
+let currentUser = null;
+
+const USERS_SEED = [
+  {id:1, name:'Kevin Ríos', email:'kevin.rios@almexa.com', role:'Administrador', active:true},
+  {id:2, name:'Laura Gómez', email:'laura.gomez@almexa.com', role:'Operario de Bodega', active:true},
+  {id:3, name:'Sergio Páez', email:'sergio.paez@almexa.com', role:'Consulta / Auditoría', active:true},
+];
+
+let state = {
+  users: [...USERS_SEED],
+  providers: [
+    {id:1, nit:'900.221.334-5', name:'Distribuciones Huila S.A.S.', contact:'318 220 9911', active:true},
+    {id:2, nit:'901.556.882-1', name:'Insumos del Sur Ltda.', contact:'contacto@insur.co', active:true},
+  ],
+  spaces: [
+    {id:1, name:'Estante A-01', capacity:200, occupied:150},
+    {id:2, name:'Estante A-02', capacity:200, occupied:60},
+    {id:3, name:'Cámara fría B-01', capacity:80, occupied:75},
+    {id:4, name:'Zona de descarga C-01', capacity:120, occupied:20},
+  ],
+  products: [
+    {id:1, code:'PRD-1042', name:'Guantes de nitrilo caja x100', category:'Bioseguridad', stock:340, min:50, exp:'2027-03-10', providerId:1, spaceId:1},
+    {id:2, code:'PRD-1050', name:'Detergente industrial 20L', category:'Aseo', stock:18, min:25, exp:'2026-12-01', providerId:2, spaceId:2},
+    {id:3, code:'PRD-1077', name:'Tapabocas quirúrgico caja x50', category:'Bioseguridad', stock:6, min:30, exp:'2026-08-15', providerId:1, spaceId:1},
+    {id:4, code:'PRD-1090', name:'Alcohol antiséptico 5L', category:'Aseo', stock:95, min:20, exp:'2026-09-01', providerId:2, spaceId:3},
+  ],
+  routes: [
+    {id:1, name:'Ruta Neiva - Bogotá', origin:'Neiva', dest:'Bogotá', eta:'2026-07-28', products:'PRD-1042, PRD-1077', status:'En tránsito'},
+    {id:2, name:'Ruta Pitalito - Neiva', origin:'Pitalito', dest:'Neiva', eta:'2026-07-24', products:'PRD-1050', status:'Retrasada'},
+  ],
+  movements: [
+    {id:1, productCode:'PRD-1042', type:'entrada', qty:100, date:'2026-07-21 09:14', user:'Laura Gómez'},
+    {id:2, productCode:'PRD-1077', type:'salida', qty:40, date:'2026-07-21 14:02', user:'Laura Gómez'},
+    {id:3, productCode:'PRD-1090', type:'entrada', qty:50, date:'2026-07-20 11:30', user:'Kevin Ríos'},
+  ],
+  accessLog: [],
+  nextId: {product:5, provider:3, route:3, space:5, user:4, movement:4},
+};
+
+/* ================= LOGIN ================= */
+function doLogin(){
+  const uid = parseInt(document.getElementById('loginUser').value);
+  const pass = document.getElementById('loginPass').value;
+  if(!pass){ toast('Ingresa una contraseña para continuar', true); return; }
+  currentUser = state.users.find(u=>u.id===uid);
+  state.accessLog.unshift(`${nowStr()} — ${currentUser.name} inició sesión (${currentUser.role})`);
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('app').style.display='block';
+  applyRoleView();
+  renderAll();
+  toast(`Bienvenido, ${currentUser.name.split(' ')[0]}`);
+}
+function doLogout(){
+  state.accessLog.unshift(`${nowStr()} — ${currentUser.name} cerró sesión`);
+  currentUser=null;
+  document.getElementById('app').style.display='none';
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('loginPass').value='';
+}
+function applyRoleView(){
+  document.getElementById('avatarLetter').textContent = currentUser.name[0];
+  document.getElementById('chipName').textContent = currentUser.name;
+  document.getElementById('chipRole').textContent = currentUser.role;
+  document.querySelectorAll('.roleview').forEach(el=>{
+    el.style.display = currentUser.role==='Administrador' ? 'flex' : 'none';
+  });
+  // Consulta/Auditoría: ocultar botones de creación (solo lectura)
+  const readOnly = currentUser.role==='Consulta / Auditoría';
+  document.querySelectorAll('.topbar .btn-primary').forEach(b=> b.style.display = readOnly ? 'none' : 'inline-block');
+}
+
+/* ================= NAVEGACIÓN ================= */
+function showPanel(name, el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  document.querySelectorAll('.navitem').forEach(n=>n.classList.remove('active'));
+  el.classList.add('active');
+}
+
+/* ================= UTIL ================= */
+function toast(msg, isWarn){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.borderColor = isWarn ? 'var(--danger)' : 'var(--accent-2)';
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer=setTimeout(()=>t.classList.remove('show'), 2600);
+}
+function nowStr(){
+  const d=new Date();
+  return d.toLocaleDateString('es-CO')+' '+d.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
+}
+function money(n){return '$'+n.toLocaleString('es-CO');}
+function closeModal(id){document.getElementById(id).classList.remove('active');}
+function openModal(id){document.getElementById(id).classList.add('active');}
+function daysUntil(dateStr){
+  const diff = (new Date(dateStr) - new Date());
+  return Math.ceil(diff/(1000*60*60*24));
+}
+
+/* ================= RENDER GENERAL ================= */
+function renderAll(){
+  renderDashboard();
+  renderProductos();
+  renderSpaces();
+  renderProviders();
+  renderRoutes();
+  renderUsers();
+  fillProductFormSelects();
+}
+
+function renderDashboard(){
+  document.getElementById('statProductos').textContent = state.products.length;
+  const alertCount = state.products.filter(p=>p.stock<p.min).length;
+  document.getElementById('statAlertas').textContent = alertCount;
+  document.getElementById('badgeStock').textContent = alertCount;
+  document.getElementById('badgeStock').classList.toggle('hidden', alertCount===0);
+  const today = new Date().toISOString().slice(0,10);
+  document.getElementById('statMov').textContent = state.movements.filter(m=>m.date.startsWith('2026-07-21')||m.date.startsWith(today)).length;
+  const totalCap = state.spaces.reduce((a,s)=>a+s.capacity,0);
+  const totalOcc = state.spaces.reduce((a,s)=>a+s.occupied,0);
+  document.getElementById('statOcup').textContent = totalCap? Math.round(totalOcc/totalCap*100)+'%':'0%';
+
+  const alertBox = document.getElementById('dashAlertList');
+  const alerts = state.products.filter(p=>p.stock<p.min);
+  alertBox.innerHTML = alerts.length ? alerts.map(p=>`
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;">
+      <span>${p.name}</span><span class="tag-badge badge-warn">${p.stock} / mín ${p.min}</span>
+    </div>`).join('') : `<div class="empty">Sin alertas de stock por el momento.</div>`;
+
+  const movBox = document.getElementById('dashMovList');
+  movBox.innerHTML = state.movements.slice(0,5).map(m=>`
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;">
+      <span>${m.productCode} · ${m.user}</span>
+      <span class="tag-badge ${m.type==='entrada'?'badge-ok':'badge-amber'}">${m.type==='entrada'?'+':'−'}${m.qty}</span>
+    </div>`).join('');
+}
+
+/* ================= PRODUCTOS ================= */
+function fillProductFormSelects(){
+  const provSel = document.getElementById('pProv');
+  provSel.innerHTML = state.providers.map(p=>`<option value="${p.id}">${p.name}</option>`).join('');
+  const locSel = document.getElementById('pLoc');
+  locSel.innerHTML = state.spaces.map(s=>`<option value="${s.id}">${s.name}</option>`).join('');
+  const catFilter = document.getElementById('prodFilter');
+  const cats = [...new Set(state.products.map(p=>p.category))];
+  catFilter.innerHTML = '<option value="">Todas las categorías</option>'+cats.map(c=>`<option value="${c}">${c}</option>`).join('');
+}
+
+function renderProductos(){
+  const search = document.getElementById('prodSearch').value.toLowerCase();
+  const filter = document.getElementById('prodFilter').value;
+  const tbody = document.getElementById('prodTableBody');
+  let list = state.products.filter(p=>
+    (p.name.toLowerCase().includes(search) || p.code.toLowerCase().includes(search)) &&
+    (!filter || p.category===filter)
+  );
+  if(!list.length){
+    tbody.innerHTML = `<tr><td colspan="9"><div class="empty">No se encontraron productos con ese criterio.</div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = list.map(p=>{
+    const space = state.spaces.find(s=>s.id===p.spaceId);
+    const low = p.stock < p.min;
+    const soonExp = daysUntil(p.exp) <= 30;
+    let statusBadge = low ? '<span class="tag-badge badge-warn">Stock bajo</span>' : '<span class="tag-badge badge-ok">Normal</span>';
+    return `<tr>
+      <td class="mono">${p.code}</td>
+      <td>${p.name}</td>
+      <td>${p.category}</td>
+      <td class="mono">${p.stock}</td>
+      <td class="mono">${p.min}</td>
+      <td class="mono">${p.exp} ${soonExp?'<span class="tag-badge badge-amber" style="margin-left:4px;">Próx. vencer</span>':''}</td>
+      <td><span class="shelftag">${space?space.name:'—'}</span></td>
+      <td>${statusBadge}</td>
+      <td style="white-space:nowrap;">
+        <button class="btn btn-ghost btn-sm" onclick="openMoveModal(${p.id},'entrada')">Entrada</button>
+        <button class="btn btn-ghost btn-sm" onclick="openMoveModal(${p.id},'salida')">Salida</button>
+        <button class="btn btn-ghost btn-sm" onclick="editProduct(${p.id})">Editar</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function openProductModal(){
+  document.getElementById('pmTitle').textContent='Registrar producto';
+  document.getElementById('pId').value='';
+  ['pCode','pName','pCat','pExp'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('pStock').value=0;
+  document.getElementById('pMin').value=0;
+  openModal('modalProduct');
+}
+function editProduct(id){
+  const p = state.products.find(x=>x.id===id);
+  document.getElementById('pmTitle').textContent='Editar producto';
+  document.getElementById('pId').value=p.id;
+  document.getElementById('pCode').value=p.code;
+  document.getElementById('pName').value=p.name;
+  document.getElementById('pCat').value=p.category;
+  document.getElementById('pStock').value=p.stock;
+  document.getElementById('pMin').value=p.min;
+  document.getElementById('pExp').value=p.exp;
+  document.getElementById('pProv').value=p.providerId;
+  document.getElementById('pLoc').value=p.spaceId;
+  openModal('modalProduct');
+}
+function saveProduct(){
+  const id = document.getElementById('pId').value;
+  const code = document.getElementById('pCode').value.trim();
+  const name = document.getElementById('pName').value.trim();
+  if(!code || !name){ toast('Código y nombre son obligatorios', true); return; }
+  const dup = state.products.find(p=>p.code===code && p.id!=id);
+  if(dup){ toast('Ya existe un producto con ese código', true); return; }
+  const data = {
+    code, name,
+    category: document.getElementById('pCat').value.trim()||'General',
+    stock: parseInt(document.getElementById('pStock').value)||0,
+    min: parseInt(document.getElementById('pMin').value)||0,
+    exp: document.getElementById('pExp').value || '2026-12-31',
+    providerId: parseInt(document.getElementById('pProv').value),
+    spaceId: parseInt(document.getElementById('pLoc').value),
+  };
+  if(id){
+    const p = state.products.find(x=>x.id==id);
+    Object.assign(p, data);
+    toast('Producto actualizado');
+  } else {
+    state.products.push({id: state.nextId.product++, ...data});
+    toast('Producto registrado');
+  }
+  closeModal('modalProduct');
+  renderProductos(); renderDashboard(); fillProductFormSelects();
+}
+
+let moveTarget = null;
+function openMoveModal(productId, type){
+  moveTarget = productId;
+  const p = state.products.find(x=>x.id===productId);
+  document.getElementById('mvTitle').textContent = (type==='entrada'?'Registrar entrada — ':'Registrar salida — ')+p.name;
+  document.getElementById('mvType').value = type;
+  document.getElementById('mvQty').value = 1;
+  document.getElementById('mvHint').textContent = `Stock actual: ${p.stock} unidades.`;
+  openModal('modalMove');
+}
+function saveMovement(){
+  const p = state.products.find(x=>x.id===moveTarget);
+  const type = document.getElementById('mvType').value;
+  const qty = parseInt(document.getElementById('mvQty').value)||0;
+  if(qty<=0){ toast('Cantidad inválida', true); return; }
+  if(type==='salida' && qty>p.stock){ toast('No hay suficiente stock para esta salida', true); return; }
+  p.stock += (type==='entrada'? qty : -qty);
+  state.movements.unshift({id:state.nextId.movement++, productCode:p.code, type, qty, date:nowStr(), user:currentUser.name});
+  closeModal('modalMove');
+  renderProductos(); renderDashboard();
+  toast(`Movimiento registrado — stock actualizado a ${p.stock}`);
+}
+
+/* ================= BODEGA / ESPACIOS ================= */
+function renderSpaces(){
+  const box = document.getElementById('spaceCards');
+  box.innerHTML = state.spaces.map(s=>{
+    const pct = Math.round(s.occupied/s.capacity*100);
+    const level = pct>=90?'badge-warn':pct>=60?'badge-amber':'badge-ok';
+    return `<div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span class="shelftag">${s.name}</span>
+        <span class="tag-badge ${level}">${pct}%</span>
+      </div>
+      <div style="margin-top:14px;color:var(--muted);font-size:12px;">Ocupación</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;">${s.occupied} / ${s.capacity}</div>
+      <div style="background:var(--panel-2);height:6px;border-radius:4px;margin-top:8px;overflow:hidden;">
+        <div style="width:${pct}%;height:100%;background:var(--accent);"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function openSpaceModal(){
+  document.getElementById('spName').value='';
+  document.getElementById('spCap').value=100;
+  openModal('modalSpace');
+}
+function saveSpace(){
+  const name = document.getElementById('spName').value.trim();
+  const cap = parseInt(document.getElementById('spCap').value)||0;
+  if(!name){ toast('Nombre de espacio requerido', true); return; }
+  state.spaces.push({id:state.nextId.space++, name, capacity:cap, occupied:0});
+  closeModal('modalSpace');
+  renderSpaces(); fillProductFormSelects();
+  toast('Espacio registrado');
+}
+
+/* ================= PROVEEDORES ================= */
+function renderProviders(){
+  const tbody = document.getElementById('provTableBody');
+  tbody.innerHTML = state.providers.map(p=>{
+    const assoc = state.products.filter(x=>x.providerId===p.id).length;
+    return `<tr>
+      <td class="mono">${p.nit}</td>
+      <td>${p.name}</td>
+      <td>${p.contact}</td>
+      <td class="mono">${assoc} producto(s)</td>
+      <td><span class="tag-badge ${p.active?'badge-ok':'badge-idle'}">${p.active?'Activo':'Inactivo'}</span></td>
+      <td><button class="btn btn-ghost btn-sm" onclick="toggleProvider(${p.id})">${p.active?'Desactivar':'Activar'}</button></td>
+    </tr>`;
+  }).join('');
+}
+function toggleProvider(id){
+  const p = state.providers.find(x=>x.id===id);
+  p.active=!p.active;
+  renderProviders();
+  toast(p.active?'Proveedor activado':'Proveedor desactivado');
+}
+function openProviderModal(){
+  ['prNit','prName','prContact'].forEach(id=>document.getElementById(id).value='');
+  openModal('modalProvider');
+}
+function saveProvider(){
+  const nit = document.getElementById('prNit').value.trim();
+  const name = document.getElementById('prName').value.trim();
+  const contact = document.getElementById('prContact').value.trim();
+  if(!nit||!name){ toast('NIT y nombre son obligatorios', true); return; }
+  state.providers.push({id:state.nextId.provider++, nit, name, contact, active:true});
+  closeModal('modalProvider');
+  renderProviders(); fillProductFormSelects();
+  toast('Proveedor registrado');
+}
+
+/* ================= RUTAS ================= */
+function renderRoutes(){
+  const tbody = document.getElementById('routeTableBody');
+  tbody.innerHTML = state.routes.map(r=>{
+    const badge = r.status==='Retrasada'?'badge-warn':r.status==='Entregada'?'badge-ok':'badge-amber';
+    return `<tr>
+      <td>${r.name}</td>
+      <td>${r.origin} → ${r.dest}</td>
+      <td class="mono">${r.eta}</td>
+      <td class="mono">${r.products}</td>
+      <td><span class="tag-badge ${badge}">${r.status}</span></td>
+      <td>
+        <button class="btn btn-ghost btn-sm" onclick="markDelayed(${r.id})">Marcar retrasada</button>
+        <button class="btn btn-ghost btn-sm" onclick="markDelivered(${r.id})">Entregada</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+function markDelayed(id){ const r=state.routes.find(x=>x.id===id); r.status='Retrasada'; renderRoutes(); toast('Ruta marcada como retrasada'); }
+function markDelivered(id){ const r=state.routes.find(x=>x.id===id); r.status='Entregada'; renderRoutes(); toast('Ruta marcada como entregada'); }
+function openRouteModal(){
+  ['rtName','rtOrigin','rtDest','rtEta','rtProds'].forEach(id=>document.getElementById(id).value='');
+  openModal('modalRoute');
+}
+function saveRoute(){
+  const name = document.getElementById('rtName').value.trim();
+  const origin = document.getElementById('rtOrigin').value.trim();
+  const dest = document.getElementById('rtDest').value.trim();
+  const eta = document.getElementById('rtEta').value;
+  const products = document.getElementById('rtProds').value.trim();
+  if(!name||!origin||!dest||!eta){ toast('Completa todos los campos de la ruta', true); return; }
+  state.routes.push({id:state.nextId.route++, name, origin, dest, eta, products, status:'En tránsito'});
+  closeModal('modalRoute');
+  renderRoutes();
+  toast('Ruta registrada');
+}
+
+/* ================= USUARIOS ================= */
+function renderUsers(){
+  const tbody = document.getElementById('userTableBody');
+  tbody.innerHTML = state.users.map(u=>`
+    <tr>
+      <td>${u.name}</td>
+      <td class="mono">${u.email}</td>
+      <td><span class="tag-badge badge-amber">${u.role}</span></td>
+      <td><span class="tag-badge ${u.active?'badge-ok':'badge-idle'}">${u.active?'Activo':'Inactivo'}</span></td>
+      <td><button class="btn btn-ghost btn-sm" onclick="toggleUser(${u.id})">${u.active?'Desactivar':'Activar'}</button></td>
+    </tr>`).join('');
+  document.getElementById('logList').innerHTML = state.accessLog.slice(0,8).map(l=>`<div>${l}</div>`).join('') || '<div>Sin accesos registrados aún.</div>';
+}
+function toggleUser(id){
+  const u = state.users.find(x=>x.id===id);
+  u.active=!u.active;
+  renderUsers();
+  toast(u.active?'Usuario activado':'Usuario desactivado');
+}
+function openUserModal(){
+  ['usName','usEmail'].forEach(id=>document.getElementById(id).value='');
+  openModal('modalUser');
+}
+function saveUser(){
+  const name = document.getElementById('usName').value.trim();
+  const email = document.getElementById('usEmail').value.trim();
+  const role = document.getElementById('usRole').value;
+  if(!name||!email){ toast('Nombre y correo son obligatorios', true); return; }
+  state.users.push({id:state.nextId.user++, name, email, role, active:true});
+  closeModal('modalUser');
+  renderUsers();
+  toast('Usuario registrado');
+}
+
+/* ================= REPORTES ================= */
+let lastReport = {headers:[], rows:[], title:''};
+function generateReport(){
+  const type = document.getElementById('repType').value;
+  let headers=[], rows=[], title='', summary='';
+  if(type==='estado'){
+    title='Estado actual del inventario';
+    headers=['Código','Producto','Categoría','Stock','Mínimo','Estado'];
+    rows = state.products.map(p=>[p.code,p.name,p.category,p.stock,p.min, p.stock<p.min?'Stock bajo':'Normal']);
+    summary = `${state.products.length} productos registrados · ${state.products.filter(p=>p.stock<p.min).length} en alerta.`;
+  } else if(type==='entradas'){
+    title='Entradas al inventario';
+    const m = state.movements.filter(x=>x.type==='entrada');
+    headers=['Producto','Cantidad','Fecha','Usuario'];
+    rows = m.map(x=>[x.productCode,x.qty,x.date,x.user]);
+    summary = `${m.length} entradas registradas, total ${m.reduce((a,x)=>a+x.qty,0)} unidades.`;
+  } else if(type==='salidas'){
+    title='Salidas del inventario';
+    const m = state.movements.filter(x=>x.type==='salida');
+    headers=['Producto','Cantidad','Fecha','Usuario'];
+    rows = m.map(x=>[x.productCode,x.qty,x.date,x.user]);
+    summary = `${m.length} salidas registradas, total ${m.reduce((a,x)=>a+x.qty,0)} unidades.`;
+  } else if(type==='sinmov'){
+    title='Productos sin movimiento';
+    const movedCodes = new Set(state.movements.map(x=>x.productCode));
+    const list = state.products.filter(p=>!movedCodes.has(p.code));
+    headers=['Código','Producto','Stock'];
+    rows = list.map(p=>[p.code,p.name,p.stock]);
+    summary = `${list.length} producto(s) sin movimientos registrados.`;
+  } else if(type==='bajo'){
+    title='Productos agotados o con stock bajo';
+    const list = state.products.filter(p=>p.stock<p.min);
+    headers=['Código','Producto','Stock','Mínimo'];
+    rows = list.map(p=>[p.code,p.name,p.stock,p.min]);
+    summary = `${list.length} producto(s) requieren reabastecimiento.`;
+  } else if(type==='proveedores'){
+    title='Proveedores e historial de entregas';
+    headers=['NIT','Proveedor','Productos asociados','Estado'];
+    rows = state.providers.map(p=>[p.nit,p.name, state.products.filter(x=>x.providerId===p.id).length, p.active?'Activo':'Inactivo']);
+    summary = `${state.providers.length} proveedores registrados.`;
+  } else if(type==='rutas'){
+    title='Rutas y recepciones';
+    headers=['Ruta','Origen → Destino','Llegada estimada','Estado'];
+    rows = state.routes.map(r=>[r.name, `${r.origin} → ${r.dest}`, r.eta, r.status]);
+    summary = `${state.routes.length} rutas registradas, ${state.routes.filter(r=>r.status==='Retrasada').length} retrasadas.`;
+  }
+  lastReport = {headers, rows, title};
+  document.getElementById('reportHead').innerHTML = '<tr>'+headers.map(h=>`<th>${h}</th>`).join('')+'</tr>';
+  document.getElementById('reportBody').innerHTML = rows.length ? rows.map(r=>'<tr>'+r.map(c=>`<td>${c}</td>`).join('')+'</tr>').join('') : `<tr><td colspan="${headers.length||1}"><div class="empty">Sin datos para este reporte.</div></td></tr>`;
+  document.getElementById('reportSummary').innerHTML = `<strong style="color:var(--text);">${title}</strong><br><span class="hint">${summary}</span>`;
+}
+function exportReport(fmt){
+  if(!lastReport.headers.length){ toast('Genera un reporte primero', true); return; }
+  if(fmt==='excel'){
+    let csv = lastReport.headers.join(',')+'\n'+lastReport.rows.map(r=>r.join(',')).join('\n');
+    const blob = new Blob([csv], {type:'text/csv'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = lastReport.title.replace(/\s+/g,'_')+'.csv';
+    a.click();
+    toast('Reporte exportado en formato Excel (CSV)');
+  } else {
+    window.print();
+    toast('Preparando exportación en PDF');
+  }
+}
+
+/* ================= INIT ================= */
+document.getElementById('loginUser').addEventListener('change', function(){
+  // demo: la contraseña queda precargada para pruebas
+});
+</script>
+</body>
+</html>

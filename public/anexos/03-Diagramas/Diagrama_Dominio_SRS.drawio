@@ -1,0 +1,230 @@
+<mxfile host="app.diagrams.net" modified="2026-06-30T00:00:00.000Z" agent="Claude" version="24.0.0" type="device">
+  <diagram name="Modelo Conceptual de Dominio" id="domain-model-srs">
+    <mxGraphModel dx="1400" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===================== ENTIDAD: Usuario ===================== -->
+        <mxCell id="usuario" value="Usuario" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=1;resizeParent=1;resizeParentMax=0;collapsible=0;swimlaneFillColor=#FFFFFF;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="200" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario_a1" value="- idUsuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="usuario">
+          <mxGeometry y="30" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario_a2" value="- nombre" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="usuario">
+          <mxGeometry y="56" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario_a3" value="- credenciales" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="usuario">
+          <mxGeometry y="82" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="usuario_a4" value="- tipoUsuario (Admin/Abogado/Secretario)" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="usuario">
+          <mxGeometry y="108" width="200" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== ENTIDAD: Rol ===================== -->
+        <mxCell id="rol" value="Rol" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=1;resizeParent=1;resizeParentMax=0;collapsible=0;swimlaneFillColor=#FFFFFF;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="rol_a1" value="- idRol" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="rol">
+          <mxGeometry y="30" width="180" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="rol_a2" value="- nombreRol / permisos" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="rol">
+          <mxGeometry y="56" width="180" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== ENTIDAD: Cliente ===================== -->
+        <mxCell id="cliente" value="Cliente" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=1;resizeParent=1;resizeParentMax=0;collapsible=0;swimlaneFillColor=#FFFFFF;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="280" width="200" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="cliente_a1" value="- idCliente" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="cliente">
+          <mxGeometry y="30" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cliente_a2" value="- nombre" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="cliente">
+          <mxGeometry y="56" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cliente_a3" value="- datosDeContacto" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="cliente">
+          <mxGeometry y="82" width="200" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== ENTIDAD: ProcesoJudicial ===================== -->
+        <mxCell id="proceso" value="ProcesoJudicial" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=1;resizeParent=1;resizeParentMax=0;collapsible=0;swimlaneFillColor=#FFFFFF;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="420" y="280" width="220" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="proceso_a1" value="- idProceso (único)" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="proceso">
+          <mxGeometry y="30" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="proceso_a2" value="- numeroRadicado" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="proceso">
+          <mxGeometry y="56" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="proceso_a3" value="- estado" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="proceso">
+          <mxGeometry y="82" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="proceso_a4" value="- fechaInicio" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="proceso">
+          <mxGeometry y="108" width="220" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="proceso_a5" value="- abogadoResponsable" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="proceso">
+          <mxGeometry y="134" width="220" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== ENTIDAD: Incidente ===================== -->
+        <mxCell id="incidente" value="Incidente" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=1;resizeParent=1;resizeParentMax=0;collapsible=0;swimlaneFillColor=#FFFFFF;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="780" y="80" width="200" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="incidente_a1" value="- idIncidente" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="incidente">
+          <mxGeometry y="30" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="incidente_a2" value="- tipoActuacion" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="incidente">
+          <mxGeometry y="56" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="incidente_a3" value="- fechaRegistro" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="incidente">
+          <mxGeometry y="82" width="200" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== ENTIDAD: Documento ===================== -->
+        <mxCell id="documento" value="Documento" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=1;resizeParent=1;resizeParentMax=0;collapsible=0;swimlaneFillColor=#FFFFFF;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="780" y="240" width="200" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="documento_a1" value="- idDocumento" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="documento">
+          <mxGeometry y="30" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="documento_a2" value="- nombreArchivo" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="documento">
+          <mxGeometry y="56" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="documento_a3" value="- fechaCarga" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="documento">
+          <mxGeometry y="82" width="200" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== ENTIDAD: Notificacion ===================== -->
+        <mxCell id="notificacion" value="Notificación" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=1;resizeParent=1;resizeParentMax=0;collapsible=0;swimlaneFillColor=#FFFFFF;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="780" y="400" width="200" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="notificacion_a1" value="- idNotificacion" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="notificacion">
+          <mxGeometry y="30" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="notificacion_a2" value="- tipoEvento" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="notificacion">
+          <mxGeometry y="56" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="notificacion_a3" value="- fechaEnvio" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="notificacion">
+          <mxGeometry y="82" width="200" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== ENTIDAD: Auditoria ===================== -->
+        <mxCell id="auditoria" value="Auditoría" style="swimlane;fontStyle=1;align=center;verticalAlign=middle;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=1;resizeParent=1;resizeParentMax=0;collapsible=0;swimlaneFillColor=#FFFFFF;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="460" width="200" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="auditoria_a1" value="- idRegistro" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="auditoria">
+          <mxGeometry y="30" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="auditoria_a2" value="- accionRealizada" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="auditoria">
+          <mxGeometry y="56" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="auditoria_a3" value="- fechaHora" style="text;align=left;verticalAlign=middle;spacingLeft=8;fontSize=12;" vertex="1" parent="auditoria">
+          <mxGeometry y="82" width="200" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- ===================== RELACIONES ===================== -->
+
+        <!-- Usuario - Rol -->
+        <mxCell id="rel1" value="posee" style="edgeStyle=entityRelationEdgeStyle;rounded=0;html=1;startArrow=none;endArrow=none;fontSize=11;" edge="1" parent="1" source="usuario" target="rol">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel1_lblN" value="N" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="300" y="100" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel1_lbl1" value="1" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="375" y="100" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Usuario(Abogado) - ProcesoJudicial -->
+        <mxCell id="rel2" value="gestiona" style="edgeStyle=entityRelationEdgeStyle;rounded=0;html=1;startArrow=none;endArrow=none;fontSize=11;" edge="1" parent="1" source="usuario" target="proceso">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel2_lbl1" value="1" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="290" y="340" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel2_lblN" value="N" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="395" y="340" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Cliente - ProcesoJudicial -->
+        <mxCell id="rel3" value="está asociado a" style="edgeStyle=entityRelationEdgeStyle;rounded=0;html=1;startArrow=none;endArrow=none;fontSize=11;" edge="1" parent="1" source="cliente" target="proceso">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel3_lblN1" value="1..N" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="290" y="355" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel3_lblN2" value="N" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="395" y="355" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ProcesoJudicial - Incidente -->
+        <mxCell id="rel4" value="tiene" style="edgeStyle=entityRelationEdgeStyle;rounded=0;html=1;startArrow=none;endArrow=none;fontSize=11;" edge="1" parent="1" source="proceso" target="incidente">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="138" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel4_lbl1" value="1" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="650" y="280" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel4_lblN" value="N" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="760" y="120" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ProcesoJudicial - Documento -->
+        <mxCell id="rel5" value="tiene" style="edgeStyle=entityRelationEdgeStyle;rounded=0;html=1;startArrow=none;endArrow=none;fontSize=11;" edge="1" parent="1" source="proceso" target="documento">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel5_lbl1" value="1" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="650" y="320" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel5_lblN" value="N" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="760" y="320" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ProcesoJudicial - Notificacion -->
+        <mxCell id="rel6" value="genera" style="edgeStyle=entityRelationEdgeStyle;rounded=0;html=1;startArrow=none;endArrow=none;fontSize=11;" edge="1" parent="1" source="proceso" target="notificacion">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel6_lbl1" value="1" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="650" y="400" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel6_lblN" value="N" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="760" y="450" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Usuario - Auditoria -->
+        <mxCell id="rel7" value="genera" style="edgeStyle=entityRelationEdgeStyle;rounded=0;html=1;startArrow=none;endArrow=none;fontSize=11;" edge="1" parent="1" source="usuario" target="auditoria">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="200" />
+              <mxPoint x="60" y="518" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel7_lbl1" value="1" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="40" y="220" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rel7_lblN" value="N" style="text;fontSize=10;align=center;" vertex="1" parent="1" connectable="0">
+          <mxGeometry x="40" y="470" width="20" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Titulo -->
+        <mxCell id="titulo" value="Modelo Conceptual de Dominio — Sistema de Gestión y Seguimiento de Procesos Judiciales" style="text;html=1;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="20" width="900" height="40" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
