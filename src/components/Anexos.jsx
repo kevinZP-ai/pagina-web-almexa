@@ -59,7 +59,7 @@ export default function Anexos() {
   return (
     <section id="anexos" className="alt" aria-label="Anexos del informe">
       <div className="wrap">
-        <SectionHead num="10" title="Anexos del informe" sub="31 recursos del proyecto" />
+        <SectionHead num="10" title="Anexos del informe" sub="39 recursos del proyecto" />
 
         <div className="anexos-toolbar">
           <div className="anexos-search">
