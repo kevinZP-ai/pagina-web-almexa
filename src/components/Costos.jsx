@@ -33,9 +33,9 @@ export default function Costos() {
               ))}
             </div>
 
-            <h3 className="h3disp mt-40">DistribuciÃ³n por categorÃ­a</h3>
+            <h3 className="h3disp mt-40">Distribución por categoría</h3>
             <div className="budget-bar">
-              <div className="bb-track" role="img" aria-label="DistribuciÃ³n del presupuesto por categorÃ­a">
+              <div className="bb-track" role="img" aria-label="Distribución del presupuesto por categoría">
                 {segs.map((c) => (
                   <span
                     key={c.categoria}
@@ -52,20 +52,20 @@ export default function Costos() {
                   />
                   <span className="b-nombre">{c.categoria}</span>
                   <span className="pct">
-                    {c.monto} Â· {fmt(pct(c))}
+                    {c.monto} · {fmt(pct(c))}
                   </span>
                 </div>
               ))}
             </div>
 
             <div className="banner">
-              <div className="strip">Saldo final Â· Presupuesto estimado de inversiÃ³n</div>
+              <div className="strip">Saldo final · Presupuesto estimado de inversión</div>
               <div className="b1">
-                <small>Total estimado Â· {costos.moneda}</small>
+                <small>Total estimado · {costos.moneda}</small>
                 {costos.total}
               </div>
               <div className="b2">
-                Presupuesto del proyecto proyectado a 18 meses. El software es cÃ³digo
+                Presupuesto del proyecto proyectado a 18 meses. El software es código
                 abierto (costo de licencia $0) y recursos humanos valora las horas del
                 proceso formativo en un escenario comercial.
               </div>
@@ -73,7 +73,7 @@ export default function Costos() {
           </div>
 
           <div>
-            <h3 className="h3disp">Recursos humanos Â· 810 horas-persona</h3>
+            <h3 className="h3disp">Recursos humanos · 825 horas-persona</h3>
             <TableBox>
               <table className="tbl">
                 <thead>
@@ -150,7 +150,7 @@ export default function Costos() {
               </table>
             </TableBox>
             <p className="note">
-              Software: todo el stack es de cÃ³digo abierto con costos de licencia $0. El
+              Software: todo el stack es de código abierto con costos de licencia $0. El
               presupuesto contempla como opcional el rubro de hosting.
             </p>
           </div>

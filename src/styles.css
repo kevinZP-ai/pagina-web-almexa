@@ -11,12 +11,12 @@
   --sheet-2: #EFE8D3;
   --ink: #20262B;
   --ink-soft: #3D4349;
-  --muted: #5B6066;
+  --muted: #4F5459;
   --buro: #25518F;
   --blue-ink: #1F447A;
   --steel: #2C4A66;
   --verm: #A32820;
-  --ochre: #8A6A2F;
+  --ochre: #7E5E28;
   --olive: #4E5B45;
   --clay: #7A5A3A;
   --slate: #5E6975;
@@ -24,11 +24,20 @@
   --hair: #C4B995;
   --rule: #B3A67F;
   --ok: #2F6B4F;
-  --amber: #8A6A2F;
+  --amber: #7E5E28;
 
   --font-disp: 'Archivo', 'Arial Narrow', system-ui, sans-serif;
   --font-body: 'Source Serif 4', Georgia, serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+
+  --elev-1: 0 1px 0 rgba(60, 48, 22, 0.1);
+  --elev-2: 0 4px 12px -6px rgba(60, 48, 22, 0.35);
+  --elev-3: 0 12px 28px -18px rgba(60, 48, 22, 0.45);
+  --elev-4: 0 30px 60px -34px rgba(60, 48, 22, 0.5);
+  --dur-fast: 0.15s;
+  --dur-med: 0.3s;
+  --dur-slow: 0.6s;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 * {
@@ -47,9 +56,7 @@ body {
   line-height: 1.7;
   color: var(--ink);
   overflow-x: clip;
-  background:
-    repeating-linear-gradient(90deg, rgba(80, 65, 30, 0.02) 0 2px, transparent 2px 9px),
-    var(--paper);
+  background: var(--paper);
 }
 
 ::selection {
@@ -262,14 +269,14 @@ main {
   min-width: 240px;
   background: var(--sheet);
   border: 1px solid var(--ink);
-  box-shadow: 4px 6px 0 rgba(32, 38, 43, 0.35);
+  box-shadow: var(--elev-3);
   padding: 6px;
   list-style: none;
   margin: 0;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-6px);
-  transition: opacity 0.15s, transform 0.15s;
+  transition: opacity var(--dur-fast), transform var(--dur-fast);
   z-index: 120;
 }
 
@@ -396,7 +403,7 @@ main {
   margin: 0 auto;
   background: var(--sheet);
   border: 1px solid var(--rule);
-  box-shadow: 0 30px 60px -34px rgba(60, 48, 22, 0.5);
+  box-shadow: var(--elev-4);
   padding: 42px 60px 40px;
 }
 
@@ -477,6 +484,23 @@ main {
 
 .hero h1 .accent-word {
   color: var(--blue-ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero .sheet {
+    animation: folio-in var(--dur-slow) var(--ease-out) both;
+  }
+}
+
+@keyframes folio-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-sub {
@@ -697,7 +721,27 @@ main {
   font-size: 11px;
 }
 
+.lg abbr[title] {
+  text-decoration: underline dashed rgba(31, 68, 122, 0.45);
+  text-underline-offset: 3px;
+  cursor: help;
+}
+
 /* ---------- Cabecera de sección ---------- */
+section {
+  --sec-tint: var(--buro);
+}
+
+#introduccion { --sec-tint: var(--olive); }
+#objetivos { --sec-tint: var(--clay); }
+#arquitectura { --sec-tint: var(--steel); }
+#requisitos { --sec-tint: var(--ochre); }
+#calidad { --sec-tint: var(--verm); }
+#costos { --sec-tint: var(--slate); }
+#licencia { --sec-tint: var(--ok); }
+#conclusiones { --sec-tint: var(--teal-deep); }
+#anexos { --sec-tint: var(--blue-ink); }
+
 .section-head {
   position: relative;
   margin: 0 0 26px;
@@ -735,32 +779,14 @@ main {
   font-size: 11.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
-}
-
-.seal {
-  position: absolute;
-  right: 6px;
-  top: 4px;
-  transform: rotate(-7deg);
-  border: 2px solid var(--verm);
-  color: var(--verm);
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 11.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 3px 12px;
-  border-radius: 8px;
-  box-shadow: inset 0 0 0 2.5px var(--paper);
-  mix-blend-mode: multiply;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  user-select: none;
-}
-
-.seal.on {
-  opacity: 1;
+  color: var(--sec-tint);
+  display: inline-block;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--sec-tint);
+  background: var(--sheet);
+  padding: 3px 8px;
+  margin-top: 10px;
+  box-shadow: var(--elev-1);
 }
 
 section {
@@ -771,6 +797,10 @@ section {
 .grid {
   display: grid;
   gap: 18px;
+}
+
+.grid > * {
+  min-width: 0;
 }
 
 .grid-2 {
@@ -1710,8 +1740,8 @@ section {
   opacity: 0;
   pointer-events: none;
   transform: translateY(10px);
-  transition: opacity 0.2s, transform 0.2s, background 0.15s, color 0.15s;
-  box-shadow: 3px 3px 0 rgba(32, 38, 43, 0.3);
+  transition: opacity var(--dur-med), transform var(--dur-med), background var(--dur-fast), color var(--dur-fast);
+  box-shadow: var(--elev-2);
 }
 
 .to-top.visible {
@@ -1828,9 +1858,6 @@ section {
 }
 
 @media (max-width: 560px) {
-  .seal {
-    display: none;
-  }
   .hero .sheet {
     padding: 24px 18px 26px;
   }
@@ -1855,4 +1882,195 @@ section {
 /* ---------- Map / glo ---------- */
 [hidden] {
   display: none !important;
+}
+
+/* ---------- Capas de fondo: bodega, ruta y folio ---------- */
+.bodega {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bodega-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(80, 65, 30, 0.05) 0 1px, transparent 1px 100px),
+    repeating-linear-gradient(180deg, rgba(80, 65, 30, 0.04) 0 1px, transparent 1px 90px);
+}
+
+.route-rail {
+  position: absolute;
+  top: 0;
+  left: 26px;
+  bottom: 0;
+  width: 2px;
+  background: transparent;
+}
+
+.route-rail::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      var(--blue-ink) 0%,
+      var(--olive) 30%,
+      var(--ochre) 60%,
+      var(--verm) 100%);
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+.route-rail::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(180deg, transparent 0 7px, rgba(32, 38, 43, 0.55) 7px 11px);
+}
+
+@supports (animation-timeline: scroll()) {
+  .route-rail::before {
+    animation: route-fill 1s linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes route-fill {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.bodega-shelf {
+  position: absolute;
+  right: 34px;
+  bottom: -26px;
+  width: clamp(180px, 24vw, 300px);
+  color: rgba(37, 81, 143, 0.16);
+  filter: blur(0.4px);
+}
+
+.bodega-shelf svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@supports (animation-timeline: scroll()) {
+  .bodega-shelf {
+    animation: shelf-drift 1s linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes shelf-drift {
+  from {
+    transform: translateY(40px);
+  }
+  to {
+    transform: translateY(-220px);
+  }
+}
+
+@media (max-width: 980px) {
+  .bodega-shelf {
+    display: none;
+  }
+  .route-rail {
+    left: 14px;
+  }
+}
+
+@media (max-width: 560px) {
+  .route-rail {
+    display: none;
+  }
+}
+
+/* ---------- Sello de seguimiento (stamp) ---------- */
+.scroll-stamp {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  background: var(--sheet);
+  padding: 8px 10px;
+  border-radius: 3px;
+  box-shadow: var(--elev-2);
+  user-select: none;
+}
+
+.scroll-stamp .ss-label {
+  color: var(--muted);
+}
+
+.scroll-stamp .ss-track {
+  width: 78px;
+  height: 7px;
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.scroll-stamp .ss-fill {
+  display: block;
+  height: 100%;
+  background: var(--sec-tint, var(--blue-ink));
+}
+
+.scroll-stamp .ss-pct {
+  color: var(--blue-ink);
+  min-width: 3.2ch;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 560px) {
+  .scroll-stamp {
+    display: none;
+  }
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Cifras tabulares ---------- */
+.tbl th,
+.tbl td,
+.mono-cell,
+.stat .value,
+.coste-val,
+.coste-cat,
+.bb-leg .pct,
+.anexo-count b,
+.hero-folio,
+.anexo-folio .file-type {
+  font-variant-numeric: tabular-nums;
+}
+
+.tbl {
+  border-collapse: collapse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-rail::before,
+  .bodega-shelf {
+    animation: none !important;
+  }
+  .route-rail::before {
+    transform: scaleY(1);
+  }
 }

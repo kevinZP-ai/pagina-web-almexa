@@ -6,7 +6,7 @@ Proyecto formativo del programa ADSO, SENA CIES, ficha 3407799, Grupo 1.
 ## Stack
 
 - React 19 + Vite 8 (JavaScript / JSX)
-- Tema oscuro estilo ALMEXA (paleta del prototipo)
+- Identidad "El Expediente del Proyecto": papel manila, tinta, azul burocrático y sello vermellón
 
 ## Desarrollo
 
@@ -21,7 +21,7 @@ npm run lint      # oxlint
 ## Estructura
 
 ```
-public/anexos/           Copia de los 31 documentos anexos del informe técnico
+public/anexos/           Copia de los 39 documentos anexos del informe técnico
 src/data/proyecto.js     Contenido del Informe Técnico ALMEXA
 src/data/anexos.js       Catálogo de anexos y categorías
 src/components/          Componentes de las secciones

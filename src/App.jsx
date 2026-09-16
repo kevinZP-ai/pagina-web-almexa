@@ -1,4 +1,6 @@
 import Navbar from './components/Navbar'
+import BodegaBg from './components/BodegaBg'
+import ScrollStamp from './components/ScrollStamp'
 import Hero from './components/Hero'
 import Resumen from './components/Resumen'
 import Introduccion from './components/Introduccion'
@@ -16,6 +18,7 @@ import ToTop from './components/ToTop'
 export default function App() {
   return (
     <>
+      <BodegaBg />
       <Navbar />
       <main>
         <Hero />
@@ -32,6 +35,7 @@ export default function App() {
       </main>
       <Footer />
       <ToTop />
+      <ScrollStamp />
     </>
   )
 }

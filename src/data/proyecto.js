@@ -19,14 +19,14 @@ export const resumenEjecutivo = {
   parrafos: [
     'ALMEXA es una aplicación web para la gestión de inventario y bodega de una organización con recursos limitados, desarrollada por el Grupo 1 del programa ADSO del SENA CIES (ficha 3407799) como ejercicio formativo integral. El sistema organiza la operación en ocho módulos funcionales que van del registro de usuarios y el control de acceso por roles hasta la administración de proveedores, rutas, inventario con stock en tiempo real, espacios físicos de bodega, reportes exportables y una API para consultas externas; se implementa como caso piloto en la comunidad educativa del SENA, donde perfiles como el bodeguero, el técnico electricista y los técnicos en sistemas teleinformáticos y redes participan en su validación.',
     'La base técnica del proyecto es una arquitectura cliente-servidor de tres capas con patrón MVC. El backend se implementa en JavaScript con Node.js y el framework Express, el frontend es una aplicación web (HTML5, CSS3 y JavaScript) que consume una API REST documentada en OpenAPI, y la información se almacena en PostgreSQL, motor elegido como definitivo. Todo el software empleado es de código abierto, por lo que el costo de licenciamiento es cero.',
-    'El presupuesto estimado asciende a $30.004.700 COP; las 810 horas-persona distribuidas entre los tres integrantes del grupo a lo largo del año y medio (18 meses) de ejecución del proyecto, acorde con el calendario formativo de la ficha 3407799, constituyen el rubro principal, al que se suman 15 horas de usuarios finales dedicadas a la validación. La validación de requisitos confirmó la coherencia entre el SRS y los artefactos de diseño, con los ocho módulos funcionales verificados y los requisitos no funcionales medibles pendientes de pruebas empíricas. El licenciamiento se definió de forma provisional bajo Apache 2.0, a la espera de la aprobación del SENA.',
+    'El presupuesto estimado asciende a $30.004.700 COP; las 810 horas-persona del equipo, distribuidas entre los tres integrantes del grupo a lo largo del año y medio (18 meses) de ejecución del proyecto acorde con el calendario formativo de la ficha 3407799, constituyen el rubro principal, al que se suman 15 horas de usuarios finales dedicadas a la validación, para un total de 825. La validación de requisitos confirmó la coherencia entre el SRS y los artefactos de diseño, con los ocho módulos funcionales verificados y los requisitos no funcionales medibles pendientes de pruebas empíricas. El licenciamiento se definió de forma provisional bajo Apache 2.0, a la espera de la aprobación del SENA.',
   ],
   stats: [
     { valor: '8', etiqueta: 'Módulos funcionales' },
     { valor: '53', etiqueta: 'Requisitos (ERF)' },
     { valor: '12', etiqueta: 'Entidades del dominio' },
     { valor: '$30M', etiqueta: 'Presupuesto COP' },
-    { valor: '810h', etiqueta: 'Horas persona' },
+    { valor: '825h', etiqueta: 'Horas persona' },
     { valor: '18 meses', etiqueta: 'Duración' },
   ],
 }

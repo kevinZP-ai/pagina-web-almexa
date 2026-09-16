@@ -74,8 +74,8 @@ export default function Arquitectura() {
         <div>
           <h3 className="disp h3disp">Comportamiento: casos de uso y diagramas de actividad</h3>
           <div className="legend">
-            <span className="lg"><b>CU</b> · caso de uso</span>
-            <span className="lg"><b>DA</b> · diagrama de actividad</span>
+            <span className="lg"><abbr title="caso de uso"><b>CU</b></abbr> · caso de uso</span>
+            <span className="lg"><abbr title="diagrama de actividad"><b>DA</b></abbr> · diagrama de actividad</span>
           </div>
           <TableBox>
             <table className="tbl">

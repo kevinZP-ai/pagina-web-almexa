@@ -23,7 +23,7 @@ export const categoriasAnexos = [
   {
     id: 'tecnico',
     nombre: 'Hardware + Software',
-    color: '#8A6A2F',
+    color: '#7E5E28',
     icono: '\u25C6',
     descripcion: 'Documentación tecnológica y presupuestos',
   },
@@ -264,7 +264,7 @@ export const anexos = [
   {
     categoria: 'rrhh',
     titulo: 'Informe de Recursos Humanos',
-    descripcion: 'Identifica diez roles a partir de las exigencias del SRS y estima 810 horas-persona a lo largo de los 18 meses de ejecución. Versión corregida.',
+    descripcion: 'Identifica diez roles a partir de las exigencias del SRS y estima 810 horas-persona del equipo a lo largo de los 18 meses de ejecución, más 15 horas de usuarios finales (825 en total). Versión corregida.',
     archivo: '06-RRHH/Informe_RRHH_Sistema_Inventario_CORREGIDO.docx',
     extension: 'docx',
   },

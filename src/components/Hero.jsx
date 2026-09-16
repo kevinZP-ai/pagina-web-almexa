@@ -1,4 +1,5 @@
 import { proyecto } from '../data/proyecto'
+import { anexos } from '../data/anexos'
 
 const BARS = '11101100110111011001110110100110101101'
 
@@ -92,7 +93,7 @@ export default function Hero() {
               Abrir expediente
             </a>
             <a className="btn btn-ghost" href="#anexos">
-              Ver anexos (30)
+              Ver anexos ({anexos.length})
             </a>
           </div>
 

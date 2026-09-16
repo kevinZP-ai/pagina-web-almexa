@@ -24,8 +24,8 @@ export default function Requisitos() {
 
         <h3 className="disp h3disp">Requisitos no funcionales</h3>
         <div className="legend">
-          <span className="lg"><b>RNF</b> · requisito no funcional</span>
-          <span className="lg"><b>ERF</b> · requisito funcional elemental</span>
+          <span className="lg"><abbr title="requisito no funcional"><b>RNF</b></abbr> · requisito no funcional</span>
+          <span className="lg"><abbr title="requisito funcional elemental"><b>ERF</b></abbr> · requisito funcional elemental</span>
         </div>
         <p className="para">
           Derivados de la norma ISO/IEC 25010. Sus metas medibles se validarán sobre la
