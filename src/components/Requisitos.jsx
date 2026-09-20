@@ -1,12 +1,16 @@
-import SectionHead from './SectionHead'
+﻿import SectionHead from './SectionHead'
 import TableBox from './TableBox'
-import { modulos, noFuncionales } from '../data/proyecto'
+import { useLang } from '../i18n/hook'
 
 export default function Requisitos() {
+  const { site } = useLang()
+  const { modulos, noFuncionales, ui } = site
+  const sec = ui.sections.requisitos
+
   return (
-    <section id="requisitos" className="alt" aria-label="Análisis de requisitos">
+    <section id="requisitos" className="alt" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="05" title="Análisis de requisitos" sub="8 módulos · 53 requisitos" />
+        <SectionHead num="05" title={sec.titulo} sub={sec.sub} />
         <div className="grid grid-3 mb-34">
           {modulos.map((m, i) => (
             <div className="card" key={m.id}>
@@ -22,22 +26,21 @@ export default function Requisitos() {
           ))}
         </div>
 
-        <h3 className="disp h3disp">Requisitos no funcionales</h3>
+        <h3 className="disp h3disp">{ui.requisitos.noFuncionales}</h3>
         <div className="legend">
-          <span className="lg"><abbr title="requisito no funcional"><b>RNF</b></abbr> · requisito no funcional</span>
-          <span className="lg"><abbr title="requisito funcional elemental"><b>ERF</b></abbr> · requisito funcional elemental</span>
+          <span className="lg"><abbr title={ui.requisitos.legendRNF}><b>RNF</b></abbr> · {ui.requisitos.legendRNF}</span>
+          <span className="lg"><abbr title={ui.requisitos.legendERF}><b>ERF</b></abbr> · {ui.requisitos.legendERF}</span>
         </div>
         <p className="para">
-          Derivados de la norma ISO/IEC 25010. Sus metas medibles se validarán sobre la
-          implementación definitiva mediante pruebas de carga y de usuario.
+          {ui.requisitos.para}
         </p>
         <TableBox>
           <table className="tbl">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Categoría</th>
-                <th>Criterio</th>
+                <th>{ui.requisitos.thId}</th>
+                <th>{ui.requisitos.thCategoria}</th>
+                <th>{ui.requisitos.thCriterio}</th>
               </tr>
             </thead>
             <tbody>

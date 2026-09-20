@@ -1,7 +1,7 @@
 @startuml
 title RF6 - Gestión de Espacios y Bodega
 
-|Encargado de Bodega|
+|Administrador|
 start
 :Registrar espacio de almacenamiento (ERF6.1);
 :Registrar equipos de bodega (ERF6.3);

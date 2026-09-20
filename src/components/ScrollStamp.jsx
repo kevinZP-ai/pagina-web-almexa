@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
+import { useLang } from '../i18n/hook'
 
 export default function ScrollStamp() {
+  const { site } = useLang()
   const [pct, setPct] = useState(0)
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export default function ScrollStamp() {
 
   return (
     <div className="scroll-stamp" aria-hidden="true">
-      <span className="ss-label">Expediente</span>
+      <span className="ss-label">{site.ui.nav.dossier}</span>
       <div className="ss-track">
         <span className="ss-fill" style={{ width: `${Math.round(pct * 100)}%` }} />
       </div>

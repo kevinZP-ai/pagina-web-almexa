@@ -1,11 +1,15 @@
-import SectionHead from './SectionHead'
-import { introduccion } from '../data/proyecto'
+﻿import SectionHead from './SectionHead'
+import { useLang } from '../i18n/hook'
 
 export default function Introduccion() {
+  const { site } = useLang()
+  const { introduccion, ui } = site
+  const sec = ui.sections.introduccion
+
   return (
-    <section id="introduccion" className="alt" aria-label="Introducción y justificación">
+    <section id="introduccion" className="alt" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="02" title="Introducción y justificación" sub="Propósito y alcance" />
+        <SectionHead num="02" title={sec.titulo} sub={sec.sub} />
         {introduccion.parrafos.map((p, i) => (
           <p className={i === 0 ? 'lead' : 'para'} key={i}>
             {p}
@@ -15,7 +19,7 @@ export default function Introduccion() {
           <div className="card">
             <div className="card-head">
               <div className="card-icon tone-0">A</div>
-              <h3>Alcance del sistema</h3>
+              <h3>{ui.introduccion.alcance}</h3>
             </div>
             <ul className="check-list green">
               {introduccion.alcance.map((a, i) => (
@@ -26,7 +30,7 @@ export default function Introduccion() {
           <div className="card">
             <div className="card-head">
               <div className="card-icon tone-1">R</div>
-              <h3>Restricciones</h3>
+              <h3>{ui.introduccion.restricciones}</h3>
             </div>
             <ul className="check-list">
               {introduccion.restricciones.map((r, i) => (

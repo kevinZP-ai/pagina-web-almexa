@@ -1,7 +1,7 @@
 @startuml
 title RF4 - Gestión de Rutas y Transporte
 
-|Encargado de Logística|
+|Técnico|
 start
 :Registrar ruta de transporte (ERF4.1);
 :Registrar fecha estimada de llegada (ERF4.2);
@@ -13,7 +13,7 @@ if (¿Fecha actual mayor a fecha estimada y ruta no recibida?) then (sí)
 else (no)
 endif
 
-|Encargado de Logística|
+|Técnico|
 if (¿La ruta requiere cambios?) then (sí)
   :Modificar ruta (ERF4.4);
 elseif (¿La ruta debe cancelarse?) then (sí)

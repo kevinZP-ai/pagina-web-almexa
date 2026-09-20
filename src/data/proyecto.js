@@ -1,4 +1,4 @@
-export const proyecto = {
+﻿export const proyecto = {
   nombre: 'ALMEXA',
   subtitulo: 'Sistema de Gestión de Inventario y Bodega',
   documento: 'Documento de cierre del proyecto formativo',
@@ -12,28 +12,28 @@ export const proyecto = {
     'Beimar Alejandro Rocha Suarez',
     'Kevin Santiago Vega Perez',
   ],
-  fecha: '08/09/2026',
+  fecha: '19/09/2026',
 }
 
 export const resumenEjecutivo = {
   parrafos: [
     'ALMEXA es una aplicación web para la gestión de inventario y bodega de una organización con recursos limitados, desarrollada por el Grupo 1 del programa ADSO del SENA CIES (ficha 3407799) como ejercicio formativo integral. El sistema organiza la operación en ocho módulos funcionales que van del registro de usuarios y el control de acceso por roles hasta la administración de proveedores, rutas, inventario con stock en tiempo real, espacios físicos de bodega, reportes exportables y una API para consultas externas; se implementa como caso piloto en la comunidad educativa del SENA, donde perfiles como el bodeguero, el técnico electricista y los técnicos en sistemas teleinformáticos y redes participan en su validación.',
     'La base técnica del proyecto es una arquitectura cliente-servidor de tres capas con patrón MVC. El backend se implementa en JavaScript con Node.js y el framework Express, el frontend es una aplicación web (HTML5, CSS3 y JavaScript) que consume una API REST documentada en OpenAPI, y la información se almacena en PostgreSQL, motor elegido como definitivo. Todo el software empleado es de código abierto, por lo que el costo de licenciamiento es cero.',
-    'El presupuesto estimado asciende a $30.004.700 COP; las 810 horas-persona del equipo, distribuidas entre los tres integrantes del grupo a lo largo del año y medio (18 meses) de ejecución del proyecto acorde con el calendario formativo de la ficha 3407799, constituyen el rubro principal, al que se suman 15 horas de usuarios finales dedicadas a la validación, para un total de 825. La validación de requisitos confirmó la coherencia entre el SRS y los artefactos de diseño, con los ocho módulos funcionales verificados y los requisitos no funcionales medibles pendientes de pruebas empíricas. El licenciamiento se definió de forma provisional bajo Apache 2.0, a la espera de la aprobación del SENA.',
+    'El presupuesto se estima en $52.287.584 COP en el escenario ideal académico (equipo de siete roles, 2.160 horas-persona) y en $2.082.116 COP en el caso real (los tres integrantes del Grupo 1, 2.160 horas-persona con trabajo académico no remunerado: recursos humanos = $0), con una ejecución de 6 meses (24 semanas); en el caso real el hardware imputado y los servicios operativos constituyen los rubros principales. La validación de requisitos confirmó la coherencia entre el SRS y los artefactos de diseño, con los ocho módulos funcionales verificados y los requisitos no funcionales medibles pendientes de pruebas empíricas. El licenciamiento se definió de forma provisional bajo la Business Source License 1.1 (BSL 1.1), a la espera de la aprobación del SENA.',
   ],
   stats: [
     { valor: '8', etiqueta: 'Módulos funcionales' },
     { valor: '53', etiqueta: 'Requisitos (ERF)' },
     { valor: '12', etiqueta: 'Entidades del dominio' },
-    { valor: '$30M', etiqueta: 'Presupuesto COP' },
-    { valor: '825h', etiqueta: 'Horas persona' },
-    { valor: '18 meses', etiqueta: 'Duración' },
+    { valor: '$2M', etiqueta: 'Presupuesto real COP' },
+    { valor: '2.160h', etiqueta: 'Horas persona (real)' },
+    { valor: '6 meses', etiqueta: 'Duración' },
   ],
 }
 
 export const introduccion = {
   parrafos: [
-    'En muchas organizaciones el inventario se controla con hojas de cálculo o registros manuales, lo que repite un patrón conocido: errores de digitación, desconocimiento de las existencias reales, faltantes que se detectan tarde y un historial de movimientos difícil de reconstruir. Esta situación, frecuente en las pequeñas y medianas empresas (más del 60 % carecen de un sistema digitalizado para el control de sus recursos), fue la que dio origen al proyecto en la comunidad educativa del SENA CIES, donde surgió la necesidad de una herramienta que centralice la información de stock, entradas y salidas y que, a la vez, sirva de ejercicio formativo integral para los aprendices del programa.',
+    'En muchas organizaciones el inventario se controla con hojas de cálculo o registros manuales, lo que repite un patrón conocido: errores de digitación, desconocimiento de las existencias reales, faltantes que se detectan tarde y un historial de movimientos difícil de reconstruir. Esta situación, frecuente en las pequeñas y medianas empresas (más del 63 % de las pymes de América Latina carecen de un sistema digitalizado para el control de sus recursos, Montero, 2025), fue la que dio origen al proyecto en la comunidad educativa del SENA CIES, donde surgió la necesidad de una herramienta que centralice la información de stock, entradas y salidas y que, a la vez, sirva de ejercicio formativo integral para los aprendices del programa.',
     'La justificación del desarrollo se apoya en dos frentes. En lo práctico, un sistema que registre, consulte y actualice productos en tiempo real, que alerte sobre stock mínimo y caducidad y que genere reportes, reduce errores y agiliza la toma de decisiones operativas. En lo académico, el proyecto permite aplicar el análisis de requisitos, el modelado relacional, el diseño de interfaces y la lógica de negocio en un entorno cercano al real, en línea con los resultados de aprendizaje del programa ADSO.',
   ],
   alcance: [
@@ -133,7 +133,7 @@ export const entidades = [
   { entidad: 'EquipoBodega', representa: 'Equipamiento físico de la bodega.', reqs: 'ERF6.3, ERF6.5' },
   { entidad: 'Reporte', representa: 'Informe generado con exportación en PDF o Excel.', reqs: 'ERF7.1-7.11' },
   { entidad: 'SistemaExterno', representa: 'Aplicación externa que consume la API.', reqs: 'ERF8.1-8.2' },
-  { entidad: 'TokenAPI', representa: 'Credencial de autenticación con vigencia para la API.', reqs: 'ERF8.3-8.4' },
+  { entidad: 'TokenAPI', representa: 'Credencial de autenticación con vigencia para la API.', reqs: 'ERF8.3' },
 ]
 
 export const casosUso = [
@@ -143,7 +143,7 @@ export const casosUso = [
   { cu: 'CU-04', da: 'DA-04', modulo: 'RF4 - Rutas y transporte', actores: 'Técnico, Sistema' },
   { cu: 'CU-04.4', da: 'DA-04', modulo: 'RF4 - Modificar ruta', actores: 'Técnico, Sistema' },
   { cu: 'CU-05', da: 'DA-05', modulo: 'RF5 - Inventario y productos', actores: 'Bodeguero, Administrador, Consultor' },
-  { cu: 'CU-06', da: 'DA-06', modulo: 'RF6 - Espacios y bodega', actores: 'Bodeguero, Administrador, Consultor' },
+  { cu: 'CU-06', da: 'DA-06', modulo: 'RF6 - Espacios y bodega', actores: 'Administrador, Consultor' },
   { cu: 'CU-07', da: 'DA-07', modulo: 'RF7 - Reportes', actores: 'Administrador, Consultor' },
   { cu: 'CU-08', da: 'DA-08', modulo: 'RF8 - API externa', actores: 'Sistema Externo, Administrador' },
 ]
@@ -151,7 +151,7 @@ export const casosUso = [
 export const qa = {
   normas: [
     { sigla: 'ISO/IEC 25010', proposito: 'Calidad de producto de software: define las características de un software funcional, fiable, eficiente y seguro; guía los requisitos no funcionales y las pruebas.', principal: true },
-    { sigla: 'ISO/IEC 29148', proposito: 'Ingeniería de requisitos: normaliza la especificación desde la elicitación hasta la validación, garantizando trazabilidad requisito-diseño-prueba.', principal: false },
+    { sigla: 'ISO/IEC/IEEE 29148', proposito: 'Ingeniería de requisitos: normaliza la especificación desde la elicitación hasta la validación, garantizando trazabilidad requisito-diseño-prueba.', principal: false },
     { sigla: 'ISO/IEC 27001', proposito: 'Seguridad de la información: establece controles para proteger los datos personales y la información tratada por el sistema, alineada con la Ley 1581 de 2012.', principal: false },
   ],
   estrategia: [
@@ -174,58 +174,106 @@ export const qa = {
 }
 
 export const riesgos = [
-  { id: 'T1', riesgo: 'Incumplimiento del rendimiento con 50.000 registros', requiere: 'RNF3', prob: 2, imp: 4, nivel: 'Alto', prioridad: 'Media' },
-  { id: 'T2', riesgo: 'Inconsistencia del motor de base de datos en la documentación: SRS declara PostgreSQL, otros documentos usan MySQL', requiere: 'RF5, RF7, RF8', prob: 3, imp: 3, nivel: 'Alto', prioridad: 'Alta' },
-  { id: 'T3', riesgo: 'Fallas de seguridad (contraseñas, accesos, inyección) y manejo indebido de datos personales', requiere: 'RNF5, RF1, RF2, Ley 1581, Decreto 1377', prob: 3, imp: 4, nivel: 'Crítico', prioridad: 'Alta' },
-  { id: 'T4', riesgo: 'Pérdida de datos ante fallos o interrupciones', requiere: 'RNF4', prob: 2, imp: 4, nivel: 'Alto', prioridad: 'Alta' },
-  { id: 'T5', riesgo: 'Error de interpretación de requisitos o desalineación entre prototipo, modelo y requerimientos', requiere: 'RF5, RF2 a RF6', prob: 3, imp: 3, nivel: 'Alto', prioridad: 'Alta' },
-  { id: 'T6', riesgo: 'Incumplimiento de plazos del cronograma académico', requiere: 'Sección 2.3', prob: 3, imp: 4, nivel: 'Crítico', prioridad: 'Alta' },
-  { id: 'T7', riesgo: 'Equipo reducido sin personal externo y falta de conocimiento técnico', requiere: 'Sección 2.3', prob: 3, imp: 3, nivel: 'Alto', prioridad: 'Media' },
-  { id: 'T8', riesgo: 'Duplicación de registros sin validación de unicidad', requiere: 'RF5.2, RF3', prob: 2, imp: 2, nivel: 'Medio', prioridad: 'Alta' },
-  { id: 'T9', riesgo: 'Definición de licenciamiento incompleta o conflictiva', requiere: 'Normativa SENA', prob: 2, imp: 3, nivel: 'Medio', prioridad: 'Alta' },
+  { id: 'T1', riesgo: 'Incumplimiento del rendimiento con 50.000 registros', requiere: 'RNF3', prob: 2, imp: 4, nivel: 'Medio', prioridad: 'Media' },
+  { id: 'T2', riesgo: 'Inconsistencia del motor de base de datos en la documentación: SRS declara PostgreSQL, otros documentos usan MySQL', requiere: 'RF5, RF7, RF8', prob: 3, imp: 3, nivel: 'Medio', prioridad: 'Media' },
+  { id: 'T3', riesgo: 'Fallas de seguridad (contraseñas, accesos, inyección) y manejo indebido de datos personales', requiere: 'RNF5, RF1, RF2, Ley 1581, Decreto 1377', prob: 3, imp: 4, nivel: 'Alto', prioridad: 'Alta' },
+  { id: 'T4', riesgo: 'Pérdida de datos ante fallos o interrupciones', requiere: 'RNF4', prob: 2, imp: 4, nivel: 'Medio', prioridad: 'Media' },
+  { id: 'T5', riesgo: 'Error de interpretación de requisitos o desalineación entre prototipo, modelo y requerimientos', requiere: 'RF5, RF2 a RF6', prob: 3, imp: 3, nivel: 'Medio', prioridad: 'Media' },
+  { id: 'T6', riesgo: 'Incumplimiento de plazos del cronograma académico', requiere: 'Sección 2.3', prob: 3, imp: 4, nivel: 'Alto', prioridad: 'Alta' },
+  { id: 'T7', riesgo: 'Equipo reducido sin personal externo y falta de conocimiento técnico', requiere: 'Sección 2.3', prob: 3, imp: 3, nivel: 'Medio', prioridad: 'Media' },
+  { id: 'T8', riesgo: 'Duplicación de registros sin validación de unicidad', requiere: 'ERF5.2, RF3', prob: 2, imp: 2, nivel: 'Bajo', prioridad: 'Baja' },
+  { id: 'T9', riesgo: 'Definición de licenciamiento incompleta o conflictiva', requiere: 'Normativa SENA', prob: 2, imp: 3, nivel: 'Medio', prioridad: 'Media' },
 ]
 
 export const costos = {
-  total: '$30.004.700',
   moneda: 'COP',
-  categorias: [
-    { categoria: 'Hardware', monto: '$7.397.000', participacion: '24,7 %' },
-    { categoria: 'Software', monto: '$0', participacion: '0,0 %' },
-    { categoria: 'Recursos humanos', monto: '$17.900.000', participacion: '59,7 %' },
-    { categoria: 'Otros', monto: '$4.707.700', participacion: '15,7 %' },
-  ],
-  otros: [
-    { nombre: 'Energía eléctrica', monto: '$900.000' },
-    { nombre: 'Internet', monto: '$1.080.000' },
-    { nombre: 'Hosting opcional', monto: '$0' },
-    { nombre: 'Imprevistos (10 %)', monto: '$2.727.700' },
-  ],
-  hardware: [
-    { equipo: 'HP Pavilion Ryzen 7 5700U, 16 GB', uso: 'Documentación y base de datos', cantidad: 2, valor: '$2.299.000' },
-    { equipo: 'HP Pavilion Ryzen 7 7730U, 24 GB', uso: 'Desarrollo de software', cantidad: 1, valor: '$2.799.000' },
-  ],
-  rh: [
-    { rol: 'Product Owner / Líder de proyecto', horas: '160 h', tarifa: '$25.000', costo: '$4.000.000' },
-    { rol: 'Analista de requisitos', horas: '60 h', tarifa: '$20.000', costo: '$1.200.000' },
-    { rol: 'DBA / Diseñador de BD', horas: '80 h', tarifa: '$25.000', costo: '$2.000.000' },
-    { rol: 'Desarrollador backend', horas: '200 h', tarifa: '$22.000', costo: '$4.400.000' },
-    { rol: 'Desarrollador frontend', horas: '180 h', tarifa: '$20.000', costo: '$3.600.000' },
-    { rol: 'Diseñador UX/UI', horas: '40 h', tarifa: '$18.000', costo: '$720.000' },
-    { rol: 'Especialista en seguridad', horas: '30 h', tarifa: '$30.000', costo: '$900.000' },
-    { rol: 'QA / Tester', horas: '60 h', tarifa: '$18.000', costo: '$1.080.000' },
-    { rol: 'Instructor (supervisión)', horas: '-', tarifa: 'N/A', costo: 'Sin costo' },
-    { rol: 'Usuarios finales (validación)', horas: '15 h', tarifa: 'N/A', costo: 'Sin costo' },
+  duracion: '6 meses (24 semanas)',
+  escenarios: [
+    {
+      nombre: 'Caso real (oficial) · Grupo 1',
+      total: '$2.082.116',
+      horas: '2.160 horas-persona',
+      nota: 'Carga de trabajo del proceso formativo no remunerada (recursos humanos = $0); las tarifas de mercado se documentan solo como referencia (ponderada $19.333/h). Hardware de compra ($7.397.000) imputado en 6 meses por depreciación en línea recta (÷6 = 6 de 36 meses de vida útil). Hosting en local sin costo.',
+      hardwareSubtotal: '$7.397.000',
+      hardwareImputacion: '$1.232.833',
+      categorias: [
+        { categoria: 'Recursos humanos', monto: '$0', participacion: '0,0 %' },
+        { categoria: 'Hardware', monto: '$1.232.833', participacion: '59,2 %' },
+        { categoria: 'Otros', monto: '$660.000', participacion: '31,7 %' },
+        { categoria: 'Software', monto: '$0', participacion: '0,0 %' },
+        { categoria: 'Imprevistos (10 %)', monto: '$189.283', participacion: '9,1 %' },
+      ],
+      otros: [
+        { nombre: 'Energía eléctrica (caso real)', monto: '$300.000' },
+        { nombre: 'Internet (caso real)', monto: '$360.000' },
+        { nombre: 'Hosting (en local)', monto: '$0' },
+        { nombre: 'Imprevistos (10 %)', monto: '$189.283' },
+      ],
+      hardware: [
+        { equipo: 'HP Pavilion Ryzen 7 5700U, 16 GB', uso: 'Documentación y base de datos', cantidad: 2, valor: '$2.299.000' },
+        { equipo: 'HP Pavilion Ryzen 7 7730U, 24 GB', uso: 'Desarrollo de software', cantidad: 1, valor: '$2.799.000' },
+      ],
+      rh: [
+        { rol: 'P1 — Líder / Product Owner + gestión', horas: '720 h', tarifa: '$21.000', costo: '$15.120.000' },
+        { rol: 'P2 — Analista / DBA / Backend', horas: '720 h', tarifa: '$21.000', costo: '$15.120.000' },
+        { rol: 'P3 — Frontend / Documentador / QA', horas: '720 h', tarifa: '$16.000', costo: '$11.520.000' },
+        { rol: 'Instructor (supervisión)', horas: '—', tarifa: 'N/A', costo: 'Sin costo' },
+        { rol: 'Usuarios finales (validación)', horas: '—', tarifa: 'N/A', costo: 'Sin costo' },
+        { rol: 'Subtotal', horas: '2.160 h', tarifa: 'ponderada $19.333 (ref.)', costo: '$41.760.000 (referencia)' },
+      ],
+    },
+    {
+      nombre: 'Caso ideal (académico) · 7 roles',
+      total: '$52.287.584',
+      horas: '2.160 horas-persona',
+      nota: 'Tarifa promedio ponderada $19.875/h. Caso comercial académico para dimensionar el valor del trabajo; los 7 equipos (uno por rol) se imputan en 6 meses por depreciación (÷6 = 6 de 36 meses de vida útil). El caso real representa un ahorro de $50.205.468 (96,0 %) frente al ideal.',
+      hardwareSubtotal: '$17.593.000',
+      hardwareImputacion: '$2.932.167',
+      categorias: [
+        { categoria: 'Recursos humanos', monto: '$42.930.000', participacion: '82,1 %' },
+        { categoria: 'Hardware', monto: '$2.932.167', participacion: '5,6 %' },
+        { categoria: 'Otros', monto: '$1.672.000', participacion: '3,2 %' },
+        { categoria: 'Software', monto: '$0', participacion: '0,0 %' },
+        { categoria: 'Imprevistos (10 %)', monto: '$4.753.417', participacion: '9,1 %' },
+      ],
+      otros: [
+        { nombre: 'Energía eléctrica (caso ideal)', monto: '$700.000' },
+        { nombre: 'Internet (caso ideal)', monto: '$840.000' },
+        { nombre: 'Hosting + dominio .com (plan anual, MI.COM.CO)', monto: '$132.000' },
+        { nombre: 'Imprevistos (10 %)', monto: '$4.753.417' },
+      ],
+      hardware: [
+        { equipo: 'HP Pavilion Ryzen 7 5700U, 16 GB', uso: 'Gestión, documentación y supervisión', cantidad: 1, valor: '$2.299.000' },
+        { equipo: 'HP Pavilion Ryzen 7 5700U, 16 GB', uso: 'Análisis y modelado', cantidad: 1, valor: '$2.299.000' },
+        { equipo: 'HP Pavilion Ryzen 7 7730U, 24 GB', uso: 'Desarrollo web (frontend)', cantidad: 1, valor: '$2.799.000' },
+        { equipo: 'HP Pavilion Ryzen 7 7730U, 24 GB', uso: 'Desarrollo backend y API', cantidad: 1, valor: '$2.799.000' },
+        { equipo: 'HP Pavilion Ryzen 7 7730U, 24 GB', uso: 'Diseño de interfaces (Figma)', cantidad: 1, valor: '$2.799.000' },
+        { equipo: 'HP Pavilion Ryzen 7 5700U, 16 GB', uso: 'Pruebas funcionales y de carga', cantidad: 1, valor: '$2.299.000' },
+        { equipo: 'HP Pavilion Ryzen 7 5700U, 16 GB', uso: 'Documentación y soporte', cantidad: 1, valor: '$2.299.000' },
+      ],
+      rh: [
+        { rol: 'Product Owner / Líder', horas: '180 h', tarifa: '$25.000', costo: '$4.500.000' },
+        { rol: 'Analista de requisitos', horas: '240 h', tarifa: '$20.000', costo: '$4.800.000' },
+        { rol: 'Desarrollador frontend', horas: '430 h', tarifa: '$20.000', costo: '$8.600.000' },
+        { rol: 'Desarrollador backend', horas: '520 h', tarifa: '$22.000', costo: '$11.440.000' },
+        { rol: 'Diseñador UX/UI', horas: '220 h', tarifa: '$18.000', costo: '$3.960.000' },
+        { rol: 'QA / Tester', horas: '360 h', tarifa: '$18.000', costo: '$6.480.000' },
+        { rol: 'Documentador / Soporte', horas: '210 h', tarifa: '$15.000', costo: '$3.150.000' },
+        { rol: 'Subtotal', horas: '2.160 h', tarifa: 'ponderada $19.875', costo: '$42.930.000' },
+      ],
+    },
   ],
 }
 
 export const licencia = {
-  nombre: 'Apache License 2.0',
-  tipo: 'Permisiva',
+  nombre: 'Business Source License 1.1',
+  tipo: 'Source-available',
   detalle:
-    'Para ALMEXA se adoptó provisionalmente la Apache License 2.0. Los derechos de autor corresponden a los autores del proyecto y al SENA, conforme a la normativa interna de la institución. La licencia es permisiva, compatible con otros ecosistemas abiertos y favorable a la integración con sistemas externos (RF8), sin imponer copyleft.',
+    'Para ALMEXA se adoptó provisionalmente la Business Source License 1.1 (BSL 1.1), modelo source-available publicado por MariaDB. Los derechos de autor corresponden a los autores del proyecto y al SENA, conforme a la normativa interna de la institución. Parámetros: Licensor Grupo ALMEXA — SENA CIES; Additional Use Grant: None; Change Date: cuatro años desde la publicación (19/09/2026 → 19/09/2030); Change License: GPL v2.0 o posterior. Hasta el Change Date el código se comparte con uso restringido y, a partir de esa fecha, se publica como GPL v2.0 o posterior.',
   esquemas: [
     { esquema: 'MIT', caracteristica: 'Permisiva, sin obligación de compartir los derivados.' },
     { esquema: 'Apache 2.0', caracteristica: 'Permisiva, con concesión de patentes y cláusula de protección ante litigios.' },
+    { esquema: 'BSL 1.1', caracteristica: 'Source-available: uso restringido hasta el Change Date, luego conversión a GPL v2.0 o posterior.' },
     { esquema: 'GPL', caracteristica: 'Copyleft fuerte, obliga a compartir los derivados bajo la misma licencia.' },
     { esquema: 'LGPL', caracteristica: 'Copyleft débil, pensada para bibliotecas.' },
     { esquema: 'Propietaria', caracteristica: 'Código cerrado y uso bajo contrato.' },
@@ -236,13 +284,13 @@ export const licencia = {
 export const conclusiones = [
   'El sistema cumple estructural y funcionalmente con los ocho módulos definidos en el SRS. La validación de requisitos confirmó la coherencia entre el documento normativo, los diagramas, el prototipo y la documentación técnica, una vez aplicadas las correcciones de la versión corregida: PostgreSQL como único motor, actores alineados a los roles formales, numeración ERF5.1-5.11 completa y retiro del requisito ERF2.5.',
   'El prototipo funcional recorre el panel general del inventario, las alertas de stock, los movimientos, los espacios, los proveedores, las rutas, los usuarios y roles, la bitácora de accesos y los reportes, además de las vistas de la API; su puesta en marcha demostró la viabilidad de la arquitectura de tres capas propuesta.',
-  'El proyecto cierra con un presupuesto estimado de $30.004.700 COP y un licenciamiento provisional Apache 2.0. Los asuntos pendientes, concentrados en los requisitos no funcionales medibles, corresponden a pruebas empíricas que se ejecutarán sobre la implementación definitiva.',
+  'El proyecto cierra con un presupuesto a doble escenario de 6 meses (24 semanas): $2.082.116 COP en el caso real del Grupo 1 (2.160 horas-persona, recursos humanos no remunerados) y $52.287.584 COP en el caso ideal académico (2.160 horas-persona), con un ahorro real del 96,0 %, y un licenciamiento provisional bajo BSL 1.1. Los asuntos pendientes, concentrados en los requisitos no funcionales medibles, corresponden a pruebas empíricas que se ejecutarán sobre la implementación definitiva.',
 ]
 
 export const recomendaciones = [
   'Ejecutar las pruebas de carga con 50.000 registros y las pruebas de usuario de ERNF1.3 sobre la implementación final para cerrar los requisitos no funcionales pendientes.',
   'Realizar una auditoría de seguridad antes de producción, verificando el cifrado de contraseñas, la vigencia de los tokens de la API, la bitácora de accesos y el cumplimiento de la Ley 1581 de 2012.',
-  'Mantener el esquema de respaldos automáticos y definir un plan B de hosting, ya que hoy el costo de hosting figura como opcional.',
+  'Mantener el esquema de respaldos automáticos y definir un plan B de hosting: en el caso real ALMEXA se despliega en local sin costo, y el caso ideal contempla el plan anual de MI.COM.CO.',
   'Priorizar el backlog si los plazos académicos se estrechan, de modo que el módulo de API (RF8) pueda diferirse a una segunda fase sin afectar el núcleo funcional del sistema.',
   'Completar el README y el manual de usuario para fortalecer la mantenibilidad (RNF7), y actualizar el documento de correlación ante cualquier cambio futuro de requisitos.',
 ]
@@ -251,9 +299,10 @@ export const versiones = [
   { version: '1.0', descripcion: 'Esquema inicial del informe con la estructura de contenidos del proyecto.', autor: 'Grupo 1', fecha: '01/09/2026' },
   { version: '1.1', descripcion: 'Primera redacción basada en el SRS original; conserva referencias al motor MySQL.', autor: 'Grupo 1', fecha: '02/09/2026' },
   { version: '2.0', descripcion: 'Informe consolidado alineado al SRS corregido (PostgreSQL, actores formales, ERF5.1-5.11) que integra validación, riesgos, costos y licenciamiento.', autor: 'Grupo 1', fecha: '03/09/2026' },
-  { version: '2.1', descripcion: 'Revisión de consistencia: stack unificado a JavaScript full-stack (Node.js con Express), contexto organizacional híbrido y navegadores conforme al SRS (incluye Safari).', autor: 'Grupo 1', fecha: '04/09/2026' },
-  { version: '2.2', descripcion: 'Duración del proyecto ajustada al calendario académico de la ficha 3407799 (18 meses) y presupuesto recalculado: servicios proyectados a 18 meses, imprevistos del 10 % y total de $30.004.700 COP.', autor: 'Grupo 1', fecha: '06/09/2026' },
+  { version: '2.1', descripcion: 'Revisión de consistencia: stack unificado a JavaScript full-stack (Node.js con Express), contexto organizacional híbrido (Pyme como marco y comunidad educativa del SENA como caso) y navegadores conforme al SRS (incluye Safari).', autor: 'Grupo 1', fecha: '04/09/2026' },
+  { version: '2.2', descripcion: 'Duración ajustada al calendario académico y presupuesto recalculado: energía e internet proyectadas, imprevistos del 10 % y total de $30.004.700 COP (posteriormente superado por la v3.0).', autor: 'Grupo 1', fecha: '06/09/2026' },
   { version: '2.3', descripcion: 'Correcciones finales del trimestre: sección 5.1 renombrada a Software con aclaración de costos de licencias, incorporación de normas ISO (25010, 9001, 27001) y matriz de riesgos resumida.', autor: 'Grupo 1', fecha: '07/09/2026' },
-  { version: '2.4', descripcion: 'Cierre del proyecto: versión final con diagrama entidad-relación (DER) y esquema físico en la sección 4.2.1, tabla de riesgos con 14 riesgos T1-T14, pruebas y aseguramiento de la calidad (QA), tabla de artefactos y diagramas alineada a los archivos finales, portada actualizada a la fecha de entrega y referencias bibliográficas ampliadas (ISO 9001, ISO/IEC 27001 y DER).', autor: 'Grupo 1', fecha: '08/09/2026' },
+  { version: '2.4', descripcion: 'Corrección de la tabla de anexos (rutas exactas y actualización del diagrama de dominio), incorporación del DER y del esquema físico en la sección 4.2, y ajustes de forma.', autor: 'Grupo 1', fecha: '08/09/2026' },
   { version: '2.5', descripcion: 'Sustitución de la norma ISO 9001 por la ISO/IEC/IEEE 29148 (ingeniería de requisitos) en la sección 6 y en las referencias bibliográficas, alineando la documentación con el SRS.', autor: 'Grupo 1', fecha: '09/09/2026' },
+  { version: '3.0', descripcion: 'Cierre trimestral: presupuesto a doble escenario de 6 meses (24 semanas): caso real Grupo 1 (2.160 h, $2.082.116, recursos humanos no remunerados) y caso ideal académico de 7 roles (2.160 h, $52.287.584) con tarifas de mercado 2026; licenciamiento provisional BSL 1.1 (Change Date 2030, GPL v2.0 o posterior); estadística de digitalización actualizada (Montero 2025, 63 %); columna de la matriz de riesgos renombrada a "Requerimiento afectado".', autor: 'Grupo 1', fecha: '19/09/2026' },
 ]

@@ -1,5 +1,4 @@
-import { proyecto } from '../data/proyecto'
-import { anexos } from '../data/anexos'
+﻿import { useLang } from '../i18n/hook'
 
 const BARS = '11101100110111011001110110100110101101'
 
@@ -38,8 +37,11 @@ const firma = (rol, nombres) => ({
 })
 
 export default function Hero() {
+  const { site } = useLang()
+  const { proyecto, anexos, ui } = site
+
   return (
-    <section id="inicio" className="hero" aria-label="Inicio">
+    <section id="inicio" className="hero" aria-label={ui.nav.inicio}>
       <div className="wrap">
         <div className="sheet">
           <span className="hero-corner tl" aria-hidden="true" />
@@ -48,18 +50,18 @@ export default function Hero() {
           <span className="hero-corner br" aria-hidden="true" />
 
           <span className="hero-seal" aria-hidden="true">
-            Recibido
+            {ui.hero.recibido}
           </span>
 
           <div className="hero-head">
             <span>
               <b>{proyecto.centro}</b>
             </span>
-            <span>Programa de formación: ADSO</span>
+            <span>{ui.hero.programa}</span>
           </div>
 
           <div className="hero-exp">
-            <span>Expediente No. ALM-2026-001</span>
+            <span>{ui.hero.expediente}</span>
             <span>{proyecto.ficha} · {proyecto.grupo}</span>
           </div>
 
@@ -70,15 +72,15 @@ export default function Hero() {
           <p className="hero-doc">{proyecto.documento}</p>
 
           <div className="hero-meta">
-            <span className="chip">Ficha <b>3407799</b></span>
-            <span className="chip">Grupo <b>1</b></span>
+            <span className="chip">{ui.hero.ficha} <b>3407799</b></span>
+            <span className="chip">{ui.hero.grupo} <b>1</b></span>
             <span className="chip">
-              Instructor: <b>José de Jesús Motta Vargas</b>
+              {ui.hero.instructor}: <b>José de Jesús Motta Vargas</b>
             </span>
           </div>
 
           <div className="hero-team">
-            <div className="team-label">Integrantes</div>
+            <div className="team-label">{ui.hero.integrantes}</div>
             <div className="team">
               {proyecto.integrantes.map((n) => (
                 <span className="member" key={n}>
@@ -90,18 +92,18 @@ export default function Hero() {
 
           <div className="hero-cta">
             <a className="btn btn-primary" href="#resumen">
-              Abrir expediente
+              {ui.hero.abrir}
             </a>
             <a className="btn btn-ghost" href="#anexos">
-              Ver anexos ({anexos.length})
+              {ui.hero.verAnexos} ({anexos.length})
             </a>
           </div>
 
           <div className="hero-signs">
             {[
-              firma('Elaboró', proyecto.integrantes.join(', ')),
-              firma('Revisó', 'José de Jesús Motta Vargas'),
-              firma('Aprobó', 'SENA CIES · Mesa de evaluación'),
+              firma(ui.hero.elaboro, proyecto.integrantes.join(', ')),
+              firma(ui.hero.reviso, 'José de Jesús Motta Vargas'),
+              firma(ui.hero.aprobo, ui.hero.mesaAprobacion),
             ].map((s) => (
               <div className="sign-block" key={s.rol}>
                 <div className="sg-rol">{s.rol}</div>
@@ -113,17 +115,17 @@ export default function Hero() {
 
           <div className="hero-code">
             <Barcode />
-            <span className="code-note">Expediente ALMEXA · registro de inventario</span>
+            <span className="code-note">{ui.hero.codigo}</span>
           </div>
 
-          <div className="hero-folio">Folio 001 · Hoja 1 de 9</div>
+          <div className="hero-folio">{ui.hero.folio1}</div>
         </div>
 
         <div className="hero-scroll">
           <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M6 9l6 6 6-6" />
           </svg>
-          Desplácese para leer el expediente
+          {ui.hero.desplazate}
         </div>
       </div>
     </section>

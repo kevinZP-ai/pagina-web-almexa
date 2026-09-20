@@ -35,9 +35,10 @@ endif
 
 |Usuario|
 :Acceder al sistema;
-:Modificar sus datos de usuario (ERF1.4);
+:Modificar sus datos de perfil;
 
 |Administrador|
+:Modificar datos del usuario (ERF1.4);
 :Listar y buscar usuarios (ERF1.6);
 if (¿Usuario debe ser desactivado?) then (sí)
   :Desactivar usuario (ERF1.5);

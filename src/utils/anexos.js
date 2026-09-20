@@ -8,6 +8,6 @@ export function abrirODescargar(anexo) {
   return { url, target: '_blank', rel: 'noopener noreferrer', descargar: true }
 }
 
-export function etiquetaAccion(anexo) {
-  return EXTENSION_ABRE.includes(anexo.extension) ? 'Abrir' : 'Descargar'
+export function etiquetaAccion(anexo, ui) {
+  return EXTENSION_ABRE.includes(anexo.extension) ? ui.anexos.abrir : ui.anexos.descargar
 }

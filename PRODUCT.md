@@ -1,4 +1,4 @@
-# Product
+﻿# Product
 
 <!-- impeccable:product-schema 1 -->
 
@@ -12,7 +12,7 @@ Evaluadores SENA del proyecto (instructores y mesa de evaluación) contrastando 
 
 ## Product Purpose
 
-Las personas (página web ALMEXA) entienden en segundos qué es el proyecto, por qué se hizo y cómo se sustenta técnicamente, y encuentran sin fricción la evidencia documental (39 anexos) que respalda el informe técnico del proyecto formativo.
+Las personas (página web ALMEXA) entienden en segundos qué es el proyecto, por qué se hizo y cómo se sustenta técnicamente, y encuentran sin fricción la evidencia documental (41 anexos) que respalda el informe técnico del proyecto formativo.
 
 ## Positioning
 
@@ -20,14 +20,14 @@ Una ventana al proceso de construcción del sistema, no una demostración del so
 
 ## Operating Context
 
-Entrega presentada junto al documento de cierre del proyecto formativo del programa ADSO (ficha 3407799, Grupo 1). Los evaluadores cruzan el contenido de las secciones con los anexos de evidencia (SRS, diagramas, prototipos, matrices, trazabilidad, validación). El presupuesto ($30.004.700 COP), las 825 horas-persona (810 del equipo + 15 de validación), los 8 módulos y las 53 requisitos funcionales son hechos verificables del informe y no deben modificarse.
+Entrega presentada junto al documento de cierre del proyecto formativo del programa ADSO (ficha 3407799, Grupo 1). Los evaluadores cruzan el contenido de las secciones con los anexos de evidencia (SRS, diagramas, prototipos, matrices, trazabilidad, validación). El presupuesto a doble escenario ($2.082.116 COP caso real del Grupo 1 con recursos humanos no remunerados, $52.287.584 COP caso ideal académico), las 2.160 horas-persona, los 8 módulos funcionales y los 53 requisitos funcionales son hechos verificables del informe (v3.0) y no deben modificarse.
 
 ## Capabilities and Constraints
 
 - Una sola página (SPA React + Vite, JS) con secciones: resumen, objetivos, arquitectura, requisitos, calidad, costos, licencia, conclusiones y anexos.
-- 39 anexos en `public/anexos/` organizados en 10 categorías; mecanismo de apertura/descarga por tipo de archivo (PDF/HTML/TXT abren pestaña; DOCX/DRAWIO/PUML descargan).
+- 41 anexos en `public/anexos/` organizados en 10 categorías; mecanismo de apertura/descarga por tipo de archivo (PDF/HTML/TXT abren pestaña; DOCX/DRAWIO/PUML descargan).
 - Datos de contenido en `src/data/proyecto.js` y `src/data/anexos.js`; no inventar cifras, siglas o hechos.
-- Ejecución solo con los integrantes del Grupo 1. PostgreSQL como motor definitivo. Ley 1581 de 2012 (datos personales). Apache 2.0 provisional a la espera de aprobación del SENA.
+- Ejecución solo con los integrantes del Grupo 1. PostgreSQL como motor definitivo. Ley 1581 de 2012 (datos personales). BSL 1.1 provisional (Change Date 2030, GPL v2.0 o posterior) a la espera de aprobación del SENA.
 
 ## Brand Commitments
 
@@ -37,9 +37,9 @@ Entrega presentada junto al documento de cierre del proyecto formativo del progr
 
 ## Evidence on Hand
 
-- `public/anexos/`: 39 documentos reales del proyecto (SRS, diagramas, prototipo, matrices, licencia, metodología, trazabilidad, validación).
+- `public/anexos/`: 41 documentos reales del proyecto (SRS, diagramas, prototipo, matrices, licencia, metodología, trazabilidad, validación).
 - `src/data/proyecto.js`: resumen, objetivos, arquitectura, requisitos, QA, riesgos, costos, licencia, conclusiones, versiones.
-- `src/data/anexos.js`: catálogo de las 10 categorías y 39 anexos.
+- `src/data/anexos.js`: catálogo de las 10 categorías y 41 anexos.
 - Sin testimonios, fotografías ni casos de clientes reales; no fabricar ninguno.
 
 ## Product Principles

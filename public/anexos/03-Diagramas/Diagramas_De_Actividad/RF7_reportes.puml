@@ -31,6 +31,9 @@ endswitch
 |Sistema|
 :Consolidar información solicitada;
 
+|Consultor|
+:Consultar y generar los reportes permitidos según su permiso;
+
 |Administrador|
 if (¿Formato de exportación? (ERF7.10)) then (PDF)
   :Exportar reporte en formato PDF;

@@ -1,7 +1,7 @@
 @startuml
 title RF5 - Gestión de Inventario y Productos
 
-|Encargado de Bodega|
+|Bodeguero|
 start
 :Registrar producto (ERF5.1);
 
@@ -13,17 +13,19 @@ else (no)
   :Guardar producto en el inventario;
 endif
 
-|Encargado de Bodega|
+|Bodeguero|
 switch (Tipo de movimiento)
 case (Entrada)
   :Registrar entrada de producto (ERF5.3);
 case (Salida)
   :Registrar salida de producto (ERF5.4);
+case (Ajuste)
+  :Registrar ajuste manual de stock con justificación (ERF5.9);
 endswitch
 
 |Sistema|
 :Registrar fecha y hora del movimiento (ERF5.5);
-:Actualizar stock en tiempo real (ERF5.9);
+:Actualizar stock en tiempo real (ERF5.10);
 
 if (¿Stock actual menor o igual al stock mínimo?) then (sí)
   :Mostrar alerta de stock (ERF5.7);
@@ -35,9 +37,9 @@ if (¿Producto próximo a caducar?) then (sí)
 else (no)
 endif
 
-:Actualizar panel de estado general del inventario (ERF5.10);
+:Actualizar panel de estado general del inventario (ERF5.11);
 
-|Encargado de Bodega|
+|Bodeguero|
 :Consultar y buscar productos (ERF5.8);
 
 stop

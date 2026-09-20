@@ -1,52 +1,65 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
+import { useLang } from '../i18n/hook'
 
-const navItems = [
-  { label: 'Inicio', href: '#inicio' },
-  {
-    label: 'Informe',
-    sub: [
-      { label: 'Resumen ejecutivo', href: '#resumen' },
-      { label: 'Introducción', href: '#introduccion' },
-      { label: 'Objetivos', href: '#objetivos' },
-      { label: 'Conclusiones', href: '#conclusiones' },
-    ],
-  },
-  {
-    label: 'Técnico',
-    sub: [
-      { label: 'Arquitectura', href: '#arquitectura' },
-      { label: 'Requisitos', href: '#requisitos' },
-      { label: 'Calidad', href: '#calidad' },
-    ],
-  },
-  {
-    label: 'Presupuesto',
-    sub: [
-      { label: 'Costos', href: '#costos' },
-      { label: 'Licencia', href: '#licencia' },
-    ],
-  },
-  { label: 'Anexos', href: '#anexos' },
+const SECTION_HREFS = [
+  '#inicio',
+  '#resumen',
+  '#introduccion',
+  '#objetivos',
+  '#conclusiones',
+  '#arquitectura',
+  '#requisitos',
+  '#calidad',
+  '#costos',
+  '#licencia',
+  '#anexos',
 ]
 
-const flatHrefs = navItems.flatMap((n) =>
-  n.sub ? n.sub.map((s) => s.href) : [n.href]
-)
-
-function groupOf(href) {
-  return navItems.find((n) => n.sub?.some((s) => s.href === href))
+function buildNavItems(ui) {
+  return [
+    { label: ui.nav.inicio, href: '#inicio' },
+    {
+      label: ui.nav.informe,
+      sub: [
+        { label: ui.nav.resumen, href: '#resumen' },
+        { label: ui.nav.introduccion, href: '#introduccion' },
+        { label: ui.nav.objetivos, href: '#objetivos' },
+        { label: ui.nav.conclusiones, href: '#conclusiones' },
+      ],
+    },
+    {
+      label: ui.nav.tecnico,
+      sub: [
+        { label: ui.nav.arquitectura, href: '#arquitectura' },
+        { label: ui.nav.requisitos, href: '#requisitos' },
+        { label: ui.nav.calidad, href: '#calidad' },
+      ],
+    },
+    {
+      label: ui.nav.presupuesto,
+      sub: [
+        { label: ui.nav.costos, href: '#costos' },
+        { label: ui.nav.licencia, href: '#licencia' },
+      ],
+    },
+    { label: ui.nav.anexos, href: '#anexos' },
+  ]
 }
 
 export default function Navbar() {
+  const { lang, setLang, site } = useLang()
+  const { ui } = site
   const [open, setOpen] = useState(false)
   const [openGroup, setOpenGroup] = useState(null)
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState('#inicio')
 
+  const navItems = buildNavItems(ui)
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 30)
-      const el = flatHrefs
+      const el = SECTION_HREFS
         .map((h) => document.querySelector(h))
         .filter(Boolean)
         .findLast((n) => n.getBoundingClientRect().top <= 90)
@@ -68,14 +81,14 @@ export default function Navbar() {
         <a href="#inicio" className="nav-logo" onClick={closeAll}>
           <img src="/favicon.svg" alt="ALMEXA" />
           ALMEXA<span className="dot">.</span>
-          <span className="exp-no">Expediente ALM-2026-001</span>
+          <span className="exp-no">{ui.nav.expedienteCorto}</span>
         </a>
-        <nav aria-label="Navegación principal">
+        <nav aria-label={ui.nav.ariaNav}>
           <ul className={`nav-links${open ? ' open' : ''}`}>
             {navItems.map((item) => {
               const isActive =
                 item.href === active ||
-                (item.sub && groupOf(active) === item)
+                (item.sub && groupOf(active, navItems) === item)
               if (item.sub) {
                 const grpOpen = openGroup === item.label
                 return (
@@ -120,13 +133,26 @@ export default function Navbar() {
             })}
           </ul>
         </nav>
+        <div className="lang-toggle" aria-label="Idioma / Language">
+          {['es', 'en'].map((l) => (
+            <button
+              key={l}
+              type="button"
+              className={`lang-btn${lang === l ? ' active' : ''}`}
+              onClick={() => setLang(l)}
+              aria-pressed={lang === l}
+            >
+              {l.toUpperCase()}
+            </button>
+          ))}
+        </div>
         <button
           className="nav-burger"
           onClick={() => {
             setOpen((o) => !o)
             setOpenGroup(null)
           }}
-          aria-label="Menú"
+          aria-label={ui.nav.ariaMenu}
           aria-expanded={open}
         >
           {open ? (
@@ -145,4 +171,8 @@ export default function Navbar() {
       </div>
     </header>
   )
+}
+
+function groupOf(href, navItems) {
+  return navItems.find((n) => n.sub?.some((s) => s.href === href))
 }

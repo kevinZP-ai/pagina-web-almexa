@@ -1,7 +1,7 @@
 @startuml
 title RF3 - Gestión de Proveedores
 
-|Encargado de Compras|
+|Administrador|
 start
 :Registrar proveedor (ERF3.1);
 :Consultar proveedor (ERF3.2);
@@ -17,6 +17,9 @@ if (¿El proveedor deja de operar con la empresa?) then (sí)
   :Desactivar proveedor (ERF3.4);
 else (no)
 endif
+
+|Consultor|
+:Consultar proveedores (consulta ERF3.2);
 
 stop
 @enduml

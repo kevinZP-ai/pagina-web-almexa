@@ -1,12 +1,16 @@
-import SectionHead from './SectionHead'
+﻿import SectionHead from './SectionHead'
 import TableBox from './TableBox'
-import { licencia, versiones } from '../data/proyecto'
+import { useLang } from '../i18n/hook'
 
 export default function Licencia() {
+  const { site } = useLang()
+  const { licencia, versiones, ui } = site
+  const sec = ui.sections.licencia
+
   return (
-    <section id="licencia" aria-label="Licenciamiento">
+    <section id="licencia" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="08" title="Licenciamiento" sub="Apache 2.0" />
+        <SectionHead num="08" title={sec.titulo} sub={sec.sub} />
         <div className="lic-card mb-34">
           <div className="lic-big">
             <div className="lic-name">{licencia.nombre}</div>
@@ -14,26 +18,36 @@ export default function Licencia() {
           </div>
           <div className="lic-detalle">
             <p>{licencia.detalle}</p>
-            <a
-              className="btn btn-sm btn-ghost"
-              href="/anexos/08-Licencia/LICENCIA_Apache-2.0.txt"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver texto íntegro (.txt)
-            </a>
+            <div className="lic-links">
+              <a
+                className="btn btn-sm btn-ghost"
+                href="/anexos/08-Licencia/LICENCIA_BSL.txt"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {ui.licencia.verTextoEn}
+              </a>
+              <a
+                className="btn btn-sm btn-ghost"
+                href="/anexos/08-Licencia/LICENCIA_BSL_ES.txt"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {ui.licencia.verTextoEs}
+              </a>
+            </div>
           </div>
         </div>
 
         <div className="grid grid-2">
           <div>
-            <h3 className="disp h3disp">Esquemas de licencia representativos</h3>
+            <h3 className="disp h3disp">{ui.licencia.esquemas}</h3>
             <TableBox>
               <table className="tbl">
                 <thead>
                   <tr>
-                    <th>Esquema</th>
-                    <th>Característica</th>
+                    <th>{ui.licencia.thEsquema}</th>
+                    <th>{ui.licencia.thCaracteristica}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -51,11 +65,11 @@ export default function Licencia() {
           </div>
 
           <div>
-            <h3 className="disp h3disp">Control de versiones del informe</h3>
+            <h3 className="disp h3disp">{ui.licencia.controlVersiones}</h3>
             <ul className="timeline">
               {versiones.map((v) => (
                 <li key={v.version}>
-                  <div className="v-ver">Versión {v.version}</div>
+                  <div className="v-ver">{ui.licencia.version} {v.version}</div>
                   <div className="v-desc">{v.descripcion}</div>
                   <div className="v-meta">
                     {v.autor} · {v.fecha}

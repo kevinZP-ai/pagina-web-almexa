@@ -295,8 +295,9 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <label>Usuario</label>
     <select id="loginUser">
       <option value="1">Kevin Ríos — Administrador</option>
-      <option value="2">Laura Gómez — Operario de Bodega</option>
-      <option value="3">Sergio Páez — Consulta / Auditoría</option>
+      <option value="2">Laura Gómez — Bodeguero</option>
+      <option value="3">Sergio Páez — Consultor</option>
+      <option value="4">Andrés Rincón — Técnico</option>
     </select>
     <label>Contraseña</label>
     <input type="password" id="loginPass" placeholder="••••••••" value="demo1234">
@@ -570,7 +571,7 @@ Respuesta 200:
   <label>Nombre completo</label><input type="text" id="usName">
   <label>Correo</label><input type="email" id="usEmail">
   <label>Rol</label>
-  <select id="usRole"><option value="Administrador">Administrador</option><option value="Operario de Bodega">Operario de Bodega</option><option value="Consulta / Auditoría">Consulta / Auditoría</option></select>
+  <select id="usRole"><option value="Administrador">Administrador</option><option value="Bodeguero">Bodeguero</option><option value="Técnico">Técnico</option><option value="Consultor">Consultor</option></select>
   <div class="modal-actions">
     <button class="btn btn-ghost" onclick="closeModal('modalUser')">Cancelar</button>
     <button class="btn btn-primary" onclick="saveUser()">Guardar</button>
@@ -585,8 +586,9 @@ let currentUser = null;
 
 const USERS_SEED = [
   {id:1, name:'Kevin Ríos', email:'kevin.rios@almexa.com', role:'Administrador', active:true},
-  {id:2, name:'Laura Gómez', email:'laura.gomez@almexa.com', role:'Operario de Bodega', active:true},
-  {id:3, name:'Sergio Páez', email:'sergio.paez@almexa.com', role:'Consulta / Auditoría', active:true},
+  {id:2, name:'Laura Gómez', email:'laura.gomez@almexa.com', role:'Bodeguero', active:true},
+  {id:3, name:'Sergio Páez', email:'sergio.paez@almexa.com', role:'Consultor', active:true},
+  {id:4, name:'Andrés Rincón', email:'andres.rincon@almexa.com', role:'Técnico', active:true},
 ];
 
 let state = {
@@ -617,7 +619,7 @@ let state = {
     {id:3, productCode:'PRD-1090', type:'entrada', qty:50, date:'2026-07-20 11:30', user:'Kevin Ríos'},
   ],
   accessLog: [],
-  nextId: {product:5, provider:3, route:3, space:5, user:4, movement:4},
+  nextId: {product:5, provider:3, route:3, space:5, user:5, movement:4},
 };
 
 /* ================= LOGIN ================= */
@@ -648,7 +650,7 @@ function applyRoleView(){
     el.style.display = currentUser.role==='Administrador' ? 'flex' : 'none';
   });
   // Consulta/Auditoría: ocultar botones de creación (solo lectura)
-  const readOnly = currentUser.role==='Consulta / Auditoría';
+  const readOnly = currentUser.role==='Consultor';
   document.querySelectorAll('.topbar .btn-primary').forEach(b=> b.style.display = readOnly ? 'none' : 'inline-block');
 }
 

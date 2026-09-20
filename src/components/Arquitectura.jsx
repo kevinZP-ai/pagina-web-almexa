@@ -1,17 +1,21 @@
-import SectionHead from './SectionHead'
+﻿import SectionHead from './SectionHead'
 import TableBox from './TableBox'
-import { arquitectura, entidades, casosUso } from '../data/proyecto'
+import { useLang } from '../i18n/hook'
 
 export default function Arquitectura() {
+  const { site } = useLang()
+  const { arquitectura, entidades, casosUso, ui } = site
+  const sec = ui.sections.arquitectura
+
   return (
-    <section id="arquitectura" aria-label="Arquitectura">
+    <section id="arquitectura" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="04" title="Arquitectura" sub="3 capas + MVC" />
+        <SectionHead num="04" title={sec.titulo} sub={sec.sub} />
         <p className="lead">{arquitectura.enfoque}</p>
         <div className="arch-caps mb-24">
           {arquitectura.capas.map((c, i) => (
             <div className="arch-cap" key={c.nombre}>
-              <div className="cap-num">Capa 0{i + 1} · Arquitectura de 3 capas</div>
+              <div className="cap-num">{ui.arquitectura.capa.replace('{1}', i + 1)}</div>
               <div className="ic">{c.icono}</div>
               <h3>{c.nombre}</h3>
               <p>{c.detalle}</p>
@@ -21,14 +25,14 @@ export default function Arquitectura() {
 
         <div className="grid grid-2 mb-24">
           <div>
-            <h3 className="disp h3disp">Stack tecnológico</h3>
+            <h3 className="disp h3disp">{ui.arquitectura.stack}</h3>
             <TableBox>
               <table className="tbl">
                 <thead>
                   <tr>
-                    <th>Componente</th>
-                    <th>Tecnología</th>
-                    <th>Rol</th>
+                    <th>{ui.arquitectura.thComponente}</th>
+                    <th>{ui.arquitectura.thTecnologia}</th>
+                    <th>{ui.arquitectura.thRol}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -47,13 +51,13 @@ export default function Arquitectura() {
           </div>
 
           <div>
-            <h3 className="disp h3disp">Entidades del dominio (12)</h3>
+            <h3 className="disp h3disp">{ui.arquitectura.entidades}</h3>
             <TableBox>
               <table className="tbl">
                 <thead>
                   <tr>
-                    <th>Entidad</th>
-                    <th>Qué representa</th>
+                    <th>{ui.arquitectura.thEntidad}</th>
+                    <th>{ui.arquitectura.thQueRepresenta}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -72,10 +76,10 @@ export default function Arquitectura() {
         </div>
 
         <div>
-          <h3 className="disp h3disp">Comportamiento: casos de uso y diagramas de actividad</h3>
+          <h3 className="disp h3disp">{ui.arquitectura.comportamiento}</h3>
           <div className="legend">
-            <span className="lg"><abbr title="caso de uso"><b>CU</b></abbr> · caso de uso</span>
-            <span className="lg"><abbr title="diagrama de actividad"><b>DA</b></abbr> · diagrama de actividad</span>
+            <span className="lg"><abbr title={ui.arquitectura.casoUso}><b>CU</b></abbr> · {ui.arquitectura.casoUso}</span>
+            <span className="lg"><abbr title={ui.arquitectura.diagramaActividad}><b>DA</b></abbr> · {ui.arquitectura.diagramaActividad}</span>
           </div>
           <TableBox>
             <table className="tbl">
@@ -83,8 +87,8 @@ export default function Arquitectura() {
                 <tr>
                   <th>CU</th>
                   <th>DA</th>
-                  <th>Módulo</th>
-                  <th>Actores</th>
+                  <th>{ui.arquitectura.thRequerimiento}</th>
+                  <th>{ui.arquitectura.thActores}</th>
                 </tr>
               </thead>
               <tbody>

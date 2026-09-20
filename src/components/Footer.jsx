@@ -1,6 +1,9 @@
-import { proyecto } from '../data/proyecto'
+﻿import { useLang } from '../i18n/hook'
 
 export default function Footer() {
+  const { site } = useLang()
+  const { proyecto, ui } = site
+
   return (
     <footer className="footer">
       <div className="wrap footer-inner">
@@ -9,7 +12,7 @@ export default function Footer() {
             ALMEXA<span className="dot">.</span>
           </div>
           <p>
-            Sistema de Gestión de Inventario y Bodega · Proyecto formativo ADSO
+            {ui.footer.desc}
             <br />
             {proyecto.centro} · {proyecto.ficha}
           </p>
@@ -21,9 +24,9 @@ export default function Footer() {
           <br />
           {proyecto.instructor}
           <br />
-          Fin del expediente · {proyecto.fecha} · Folio 009
+          {ui.footer.fin} · {proyecto.fecha} · {ui.footer.folio}
           <br />
-          <a href="#inicio" className="f-top">Volver a la portada ↑</a>
+          <a href="#inicio" className="f-top">{ui.footer.volver}</a>
         </div>
       </div>
     </footer>

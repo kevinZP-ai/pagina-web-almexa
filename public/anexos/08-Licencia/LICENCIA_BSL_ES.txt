@@ -1,0 +1,115 @@
+Business Source License 1.1 (versión en español)
+
+Texto de la licencia con derechos de autor (c) 2024 MariaDB plc, Todos los
+derechos reservados.
+"Business Source License" es una marca comercial de MariaDB plc.
+
+-----------------------------------------------------------------------------
+
+Parámetros
+
+Licensor:            Grupo ALMEXA - SENA CIES (Programa ADSO, Ficha 3407799)
+Licensed Work:       ALMEXA - Sistema de Gestión de Inventario y Bodega
+Additional Use Grant: Ninguno (None)
+
+Change Date:         Cuatro años a partir de la fecha en que el Licensed
+                     Work es publicado (a partir de 2026-09-19, es decir,
+                     el 19 de septiembre de 2030)
+Change License:      GPL v2.0 o posterior
+
+-----------------------------------------------------------------------------
+
+Términos
+
+El Licensor por medio de la presente le otorga el derecho de copiar,
+modificar, crear obras derivadas, redistribuir y realizar uso no productivo
+del Licensed Work. El Licensor puede otorgar un Additional Use Grant, antes
+mencionado, permitiendo un uso productivo limitado.
+
+Con efectividad en el Change Date, o en el cuarto aniversario de la primera
+distribución pública disponible de una versión específica del Licensed Work
+bajo esta Licencia, lo que ocurra primero, el Licensor le otorga por medio
+de la presente los derechos bajo los términos de la Change License, y los
+derechos otorgados en el párrafo anterior terminan.
+
+Si su uso del Licensed Work no cumple con los requisitos actualmente
+vigentes descritos en esta Licencia, usted debe adquirir una licencia
+comercial del Licensor, de sus entidades afiliadas o de distribuidores
+autorizados, o debe abstenerse de usar el Licensed Work.
+
+Todas las copias del Licensed Work original y modificado, así como las obras
+derivadas del Licensed Work, están sujetas a esta Licencia. Esta Licencia se
+aplica por separado para cada versión del Licensed Work y el Change Date
+puede variar para cada versión del Licensed Work publicada por el Licensor.
+
+Usted debe exhibir de manera conspicua esta Licencia en cada copia original
+o modificada del Licensed Work. Si usted recibe el Licensed Work en su forma
+original o modificada de un tercero, los términos y condiciones establecidos
+en esta Licencia se aplican a su uso de esa obra.
+
+Cualquier uso del Licensed Work en violación de esta Licencia terminará
+automáticamente sus derechos bajo esta Licencia para la versión actual y
+todas las demás versiones del Licensed Work.
+
+Esta Licencia no le otorga ningún derecho sobre marcas comerciales o
+logotipos del Licensor o de sus afiliados (aunque usted puede usar una marca
+comercial o logotipo del Licensor tal como lo exige expresamente esta
+Licencia).
+
+EN LA MEDIDA PERMITIDA POR LA LEY APLICABLE, EL LICENSED WORK SE PROPORCIONA
+SOBRE UNA BASE "TAL CUAL". EL LICENSOR NIEGA POR MEDIO DE LA PRESENTE TODAS
+LAS GARANTÍAS Y CONDICIONES, EXPRESAS O IMPLÍCITAS, INCLUIDAS (SIN LIMITACIÓN)
+LAS GARANTÍAS DE COMERCIABILIDAD, IDONEIDAD PARA UN PROPÓSITO PARTICULAR,
+NO INFRACCIÓN Y TÍTULO. MariaDB le otorga por medio de la presente permiso
+para usar el texto de esta Licencia para licenciar sus obras y para
+referirse a ella usando la marca comercial "Business Source License",
+siempre que usted cumpla con los Pactos del Licensor que se indican a
+continuación.
+
+-----------------------------------------------------------------------------
+
+Pactos del Licensor
+
+En consideración al derecho de usar el texto de esta Licencia y el nombre y
+la marca comercial "Business Source License", el Licensor se compromete con
+MariaDB y con todos los demás destinatarios de la obra licenciada que el
+Licensor proporcionará:
+
+Especificar como Change License la GPL Versión 2.0 o cualquier versión
+posterior, o una licencia compatible con GPL Versión 2.0 o una versión
+posterior, donde "compatible" significa que el software provisto bajo la
+Change License puede incluirse en un programa con software provisto bajo GPL
+Versión 2.0 o una versión posterior. El Licensor puede especificar Change
+Licenses adicionales sin limitación.
+
+Cumplir una de las siguientes opciones: (a) especificar una concesión
+adicional de derechos de uso que no imponga ninguna restricción adicional
+sobre los derechos otorgados en esta Licencia, como Additional Use Grant; o
+(b) insertar el texto "None" para especificar un Change Date. No modificar
+esta Licencia de ninguna otra manera.
+
+-----------------------------------------------------------------------------
+
+Aviso
+
+La Business Source License (este documento, o la "Licencia") no es una
+licencia de Código Abierto (Open Source). Sin embargo, el Licensed Work se
+pondrá eventualmente a disposición bajo una Licencia de Código Abierto,
+como se establece en esta Licencia.
+
+Para obtener más información sobre el uso de la Business Source License para
+los productos de MariaDB, visite las preguntas frecuentes de la Business
+Source License de MariaDB. Para obtener más información sobre el uso de la
+Business Source License en general, visite las preguntas frecuentes sobre
+la adopción y desarrollo de la Business Source License.
+
+-----------------------------------------------------------------------------
+
+Aplicación a ALMEXA
+
+Los parámetros anteriores (Licensor: Grupo ALMEXA - SENA CIES; Additional
+Use Grant: None; Change Date: 2030-09-19; Change License: GPL v2.0 o
+posterior) rigen el uso del Licensed Work "ALMEXA - Sistema de Gestión de
+Inventario y Bodega". Hasta el Change Date el código se distribuye bajo la
+licencia de uso restringido anterior (source-available); a partir de dicha
+fecha pasa a distribuirse bajo GPL v2.0 o posterior.

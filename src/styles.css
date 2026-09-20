@@ -125,14 +125,12 @@ main {
   line-height: 1.75;
   font-size: 15.5px;
   margin: 0 0 16px;
-  max-width: 72ch;
 }
 
 .lead {
   color: var(--ink);
   font-size: 18px;
   line-height: 1.7;
-  max-width: 72ch;
 }
 
 /* ---------- Reglas de formulario (doble línea oficial) ---------- */
@@ -721,6 +719,35 @@ main {
   font-size: 11px;
 }
 
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.tab {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 9px 16px;
+  border-radius: 3px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.tab:hover {
+  background: var(--buro);
+}
+
+.tab.active {
+  background: var(--ink);
+  color: var(--sheet);
+}
+
 .lg abbr[title] {
   text-decoration: underline dashed rgba(31, 68, 122, 0.45);
   text-underline-offset: 3px;
@@ -1109,6 +1136,25 @@ section {
   line-height: 1.5;
 }
 
+.tbl .foot-row td {
+  border-top: 1px solid var(--hair);
+  background: var(--sheet-2);
+  font-size: 12px;
+}
+
+.tbl .foot-row td:first-child {
+  color: var(--muted);
+}
+
+.tbl .cell-note {
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.55;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-bottom: none;
+}
+
 /* ---------- Checklist (casillas de formulario) ---------- */
 .check-list {
   list-style: none;
@@ -1197,7 +1243,6 @@ section {
   font-size: 14px;
   color: var(--ink-soft);
   line-height: 1.65;
-  max-width: 520px;
 }
 
 .budget-bar {
@@ -1270,7 +1315,6 @@ section {
   font-size: 13.5px;
   color: var(--muted);
   line-height: 1.65;
-  max-width: 60ch;
 }
 
 /* ---------- Licencia ---------- */
@@ -2073,4 +2117,97 @@ main {
   .route-rail::before {
     transform: scaleY(1);
   }
+}
+
+/* ---------- Interruptor de idioma ES/EN ---------- */
+.nav-inner nav {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  align-self: center;
+  margin-left: 12px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--sheet);
+  padding: 2px;
+}
+
+.lang-btn {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 2px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.lang-btn:hover {
+  background: var(--paper-2);
+}
+
+.lang-btn.active {
+  background: var(--ink);
+  color: var(--sheet);
+}
+
+@media (max-width: 1024px) {
+  .nav-inner .lang-toggle {
+    margin-left: auto;
+  }
+}
+
+/* ---------- Costos: columna llena sin huecos + tarjeta de nota ---------- */
+.grid-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.note-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.note-card:hover {
+  transform: none;
+}
+
+.note-card .para {
+  margin: 0;
+  max-width: none;
+}
+
+.lic-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ---------- Texto alineado a la izquierda en zonas de lectura ---------- */
+.para,
+.lead,
+.card .desc,
+.arch-cap p,
+.lic-detalle p,
+.banner .b2,
+.note,
+.anexo-desc,
+.timeline .v-desc,
+.check-list li {
+  width: 100%;
+  text-align: left;
 }

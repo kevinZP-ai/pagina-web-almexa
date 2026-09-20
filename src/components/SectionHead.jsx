@@ -3,7 +3,7 @@ export default function SectionHead({ num, title, sub }) {
     <div className="section-head">
       <span className="section-num">{num}</span>
       <h2>{title}</h2>
-      {sub && <span className="sub">— {sub} · Folio 0{parseInt(num, 10)}</span>}
+      {sub && <span className="sub">— {sub} · Folio {String(parseInt(num, 10)).padStart(3, '0')}</span>}
     </div>
   )
 }

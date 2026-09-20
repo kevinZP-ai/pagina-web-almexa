@@ -1,9 +1,10 @@
-# PRONT · ALMEXA — El Expediente de Bodega
+﻿# PRONT · ALMEXA — El Expediente de Bodega
 
 Dirección visual pinneada por el usuario (2026-09-15). Este documento es el
 contrato de diseño durante la build; no viaja al artefacto publicado. La
 identidad "EL EXPEDIENTE" se conserva y se profundiza; nada reemplaza la
-verdad de producto (cifras, hechos, 39 anexos, 825 horas).
+verdad de producto (cifras, hechos, 41 anexos, presupuesto a doble escenario
+de 6 meses: $2.082.116 real / $52.287.584 ideal, 2.160 horas-persona).
 
 ## Mundo material
 - Superficie: papel manila claro + papel más oscuro de carbón. Tinta casi
@@ -61,9 +62,10 @@ verdad de producto (cifras, hechos, 39 anexos, 825 horas).
   tarjetas de anexos.
 
 ## Verdad de producto (inalterable)
-- 39 anexos / 10 categorías; Hero muestra el total derivado (`anexos.length`).
-- Horas: 810 del equipo + 15 de validación = **825 en total** (estat/stat,
-  narrativa, título de Costos, PRODUCT.md, descripción del anexo RRHH).
-- PostgreSQL 16 definitivo; ISO/IEC/IEEE 29148; versiones hasta 2.5 (sin v2.6).
-- $30.004.700 COP, 8 módulos, 53 ERF, 12 entidades/13 tablas, ficha 3407799.
+- 41 anexos / 10 categorías; Hero muestra el total derivado (`anexos.length`).
+- Horas: **2.160 horas-persona** en ambos escenarios (6 meses, 24 semanas);
+  caso real (Grupo 1): 3 integrantes × 720 h (30 h/semana), no remuneradas.
+- PostgreSQL 16 definitivo; ISO/IEC/IEEE 29148; versiones hasta 3.0.
+- Presupuesto doble escenario: real **$2.082.116** (RH $0) / ideal **$52.287.584**;
+  8 módulos, 53 ERF, 12 entidades/13 tablas, ficha 3407799.
 - DER debe reemplazarse por la copia local verificada (layout: modelo idéntico).

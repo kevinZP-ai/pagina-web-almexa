@@ -1,24 +1,39 @@
-import SectionHead from './SectionHead'
+﻿import SectionHead from './SectionHead'
 import TableBox from './TableBox'
-import { qa, riesgos } from '../data/proyecto'
+import { useLang } from '../i18n/hook'
 
-function nivelBadge(nivel) {
+function nivelBadge(nivel, ui) {
+  const n = nivel.toLowerCase()
   const clase =
-    nivel.toLowerCase() === 'crítico'
+    n === 'critical' || n === 'crítico'
       ? 'badge-critico'
-      : nivel.toLowerCase() === 'alto'
+      : n === 'high' || n === 'alto'
         ? 'badge-alto'
-        : 'badge-medio'
-  return <span className={`badge ${clase}`}>{nivel}</span>
+        : n === 'medium' || n === 'medio'
+          ? 'badge-medio'
+          : 'badge-bajo'
+  const label =
+    n === 'critical' || n === 'crítico'
+      ? ui.calidad.badges.critico
+      : n === 'high' || n === 'alto'
+        ? ui.calidad.badges.alto
+        : n === 'medium' || n === 'medio'
+          ? ui.calidad.badges.medio
+          : ui.calidad.badges.bajo
+  return <span className={`badge ${clase}`}>{label}</span>
 }
 
 export default function Calidad() {
-  return (
-    <section id="calidad" aria-label="Pruebas y calidad">
-      <div className="wrap">
-        <SectionHead num="06" title="Pruebas y calidad" sub="QA · ISO · Riesgos" />
+  const { site } = useLang()
+  const { qa, riesgos, ui } = site
+  const sec = ui.sections.calidad
 
-        <h3 className="disp h3disp">Normas ISO adoptadas</h3>
+  return (
+    <section id="calidad" aria-label={sec.titulo}>
+      <div className="wrap">
+        <SectionHead num="06" title={sec.titulo} sub={sec.sub} />
+
+        <h3 className="disp h3disp">{ui.calidad.normas}</h3>
         <div className="grid grid-3 mb-34">
           {qa.normas.map((n) => (
             <div className={`card${n.principal ? ' primary' : ''}`} key={n.sigla}>
@@ -28,7 +43,7 @@ export default function Calidad() {
                 </div>
                 <div>
                   <h3>{n.sigla}</h3>
-                  {n.principal && <div className="reqs">Norma principal</div>}
+                  {n.principal && <div className="reqs">{ui.calidad.principal}</div>}
                 </div>
               </div>
               <p className="desc">{n.proposito}</p>
@@ -38,7 +53,7 @@ export default function Calidad() {
 
         <div className="grid grid-2 mb-34">
           <div>
-            <h3 className="disp h3disp">Estrategia de pruebas</h3>
+            <h3 className="disp h3disp">{ui.calidad.estrategia}</h3>
             <ul className="check-list green">
               {qa.estrategia.map((e, i) => (
                 <li key={i}>{e}</li>
@@ -46,14 +61,14 @@ export default function Calidad() {
             </ul>
           </div>
           <div>
-            <h3 className="disp h3disp">Validación de requisitos funcionales</h3>
+            <h3 className="disp h3disp">{ui.calidad.validacion}</h3>
             <TableBox>
               <table className="tbl">
                 <thead>
                   <tr>
-                    <th>Módulo</th>
-                    <th>Requisitos</th>
-                    <th>Estado</th>
+                    <th>{ui.calidad.thModulo}</th>
+                    <th>{ui.calidad.thRequisitos}</th>
+                    <th>{ui.calidad.thEstado}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -72,16 +87,16 @@ export default function Calidad() {
           </div>
         </div>
 
-        <h3 className="disp h3disp">Matriz de riesgos: resumen de 9 (T1–T9) de los 14 del anexo</h3>
+        <h3 className="disp h3disp">{ui.calidad.riesgos}</h3>
         <TableBox>
           <table className="tbl">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Riesgo</th>
-                <th>Requiere</th>
-                <th>Nivel</th>
-                <th>Prioridad</th>
+                <th>{ui.requisitos.thId}</th>
+                <th>{ui.calidad.thRiesgo}</th>
+                <th>{ui.calidad.thAfectado}</th>
+                <th>{ui.calidad.thNivel}</th>
+                <th>{ui.calidad.thPrioridad}</th>
               </tr>
             </thead>
             <tbody>
@@ -92,7 +107,7 @@ export default function Calidad() {
                   </td>
                   <td>{r.riesgo}</td>
                   <td className="mono-cell">{r.requiere}</td>
-                  <td>{nivelBadge(r.nivel)}</td>
+                  <td>{nivelBadge(r.nivel, ui)}</td>
                   <td>{r.prioridad}</td>
                 </tr>
               ))}

@@ -5,7 +5,6 @@ title RF2 - Gestión de Roles y Permisos
 start
 :Definir roles del sistema (ERF2.1);
 :Asignar rol a usuario (ERF2.2);
-:Configurar materiales favoritos por perfil de usuario (ERF2.5);
 
 |Usuario|
 :Solicitar acceso a un módulo del sistema;

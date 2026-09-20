@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react'
+﻿import { useMemo, useState } from 'react'
 import SectionHead from './SectionHead'
-import { anexos, categoriasAnexos } from '../data/anexos'
+import { useLang } from '../i18n/hook'
 import { abrirODescargar, etiquetaAccion } from '../utils/anexos'
 
 const extClass = (ext) => {
@@ -9,6 +9,9 @@ const extClass = (ext) => {
 }
 
 export default function Anexos() {
+  const { site } = useLang()
+  const { anexos, categoriasAnexos, ui } = site
+  const sec = ui.sections.anexos
   const [query, setQuery] = useState('')
   const [categoriaActiva, setCategoriaActiva] = useState('todas')
 
@@ -29,21 +32,25 @@ export default function Anexos() {
         ;(acc[a.categoria] = acc[a.categoria] || []).push(a)
         return acc
       }, {})
-  }, [query, categoriaActiva])
+  }, [query, categoriaActiva, anexos])
 
   const totales = useMemo(() => {
     const q = query.trim().toLowerCase()
     return anexos.filter(
       (a) =>
-        q === '' ||
-        a.titulo.toLowerCase().includes(q) ||
-        a.descripcion.toLowerCase().includes(q),
+        (categoriaActiva === 'todas' || a.categoria === categoriaActiva) &&
+        (q === '' ||
+          a.titulo.toLowerCase().includes(q) ||
+          a.descripcion.toLowerCase().includes(q)),
     ).length
-  }, [query])
+  }, [query, categoriaActiva, anexos])
 
   const catInfo = (id) => categoriasAnexos.find((c) => c.id === id)
 
-  const pills = [{ id: 'todas', nombre: 'Todas' }, ...categoriasAnexos]
+  const pills = [
+    { id: 'todas', nombre: ui.anexos.todas },
+    ...categoriasAnexos,
+  ]
 
   const onPillsKeys = (e) => {
     const idx = pills.findIndex((p) => p.id === categoriaActiva)
@@ -56,16 +63,21 @@ export default function Anexos() {
     }
   }
 
+  const folioDe = (anexo) => {
+    const i = anexos.findIndex((a) => a.archivo === anexo.archivo)
+    return `Folio ${String(i + 1).padStart(3, '0')}`
+  }
+
   return (
-    <section id="anexos" className="alt" aria-label="Anexos del informe">
+    <section id="anexos" className="alt" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="10" title="Anexos del informe" sub="39 recursos del proyecto" />
+        <SectionHead num="10" title={sec.titulo} sub={sec.sub(anexos.length)} />
 
         <div className="anexos-toolbar">
           <div className="anexos-search">
             <input
               type="text"
-              placeholder="Buscar anexo, categoría o tipo de archivo…"
+              placeholder={ui.anexos.buscar}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === 'Escape' && setQuery('')}
@@ -74,7 +86,7 @@ export default function Anexos() {
               <button
                 type="button"
                 className="search-clear"
-                aria-label="Limpiar búsqueda"
+                aria-label={ui.anexos.limpiar}
                 onClick={() => setQuery('')}
               >
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
@@ -87,7 +99,7 @@ export default function Anexos() {
           <div
             className="cat-pills"
             role="radiogroup"
-            aria-label="Filtrar por categoría"
+            aria-label={ui.anexos.filtrar}
             onKeyDown={onPillsKeys}
           >
             {pills.map((p) => (
@@ -105,9 +117,9 @@ export default function Anexos() {
         </div>
 
         <div className="anexo-count">
-          Mostrando <b>{totales}</b> de {anexos.length} anexos
+          {ui.anexos.mostrando(totales, anexos.length)}
           {categoriaActiva !== 'todas'
-            ? ` · categoría “${catInfo(categoriaActiva)?.nombre}”`
+            ? ` · ${ui.anexos.categoria(catInfo(categoriaActiva)?.nombre)}`
             : ''}
         </div>
 
@@ -127,12 +139,12 @@ export default function Anexos() {
                   <h3>{cat.nombre}</h3>
                   <span className="cat-bar" />
                   <span className="cat-count">
-                    {items.length} {items.length === 1 ? 'recurso' : 'recursos'}
+                    {items.length} {ui.anexos.recurso(items.length)}
                   </span>
                 </div>
                 <div className="anexos-grid">
                   {items.map((a) => (
-                    <AnexoCard key={a.archivo} anexo={a} />
+                    <AnexoCard key={a.archivo} anexo={a} cat={a.categoria} categoria={cat} folioDe={folioDe} ui={ui} />
                   ))}
                 </div>
               </div>
@@ -142,12 +154,17 @@ export default function Anexos() {
           <div className="anexos-grid">
             {Object.keys(porCategoria).length === 0 ? (
               <div className="card empty-card">
-                <p className="para">No se encontraron anexos que coincidan con tu búsqueda.</p>
+                <p className="para">{ui.anexos.sinResultados}</p>
               </div>
             ) : (
               Object.values(porCategoria)
                 .flat()
-                .map((a) => <AnexoCard key={a.archivo} anexo={a} />)
+                .map((a) => {
+                  const cat = categoriasAnexos.find((c) => c.id === a.categoria)
+                  return (
+                    <AnexoCard key={a.archivo} anexo={a} cat={a.categoria} categoria={cat} folioDe={folioDe} ui={ui} />
+                  )
+                })
             )}
           </div>
         )}
@@ -156,23 +173,17 @@ export default function Anexos() {
   )
 }
 
-function folioDe(anexo) {
-  const i = anexos.findIndex((a) => a.archivo === anexo.archivo)
-  return `Folio ${String(i + 1).padStart(3, '0')}`
-}
-
-function AnexoCard({ anexo }) {
-  const cat = categoriasAnexos.find((c) => c.id === anexo.categoria)
+function AnexoCard({ anexo, categoria, folioDe, ui }) {
   const accion = abrirODescargar(anexo)
   return (
     <div className="anexo-card">
       <div className="anexo-top">
-        <div className="anexo-badge" style={{ background: cat.color, color: '#F5F0E0' }}>
-          {cat.icono}
+        <div className="anexo-badge" style={{ background: categoria.color, color: '#F5F0E0' }}>
+          {categoria.icono}
         </div>
         <div>
-          <div className="anexo-cat-label" style={{ color: cat.color }}>
-            {cat.nombre}
+          <div className="anexo-cat-label" style={{ color: categoria.color }}>
+            {categoria.nombre}
           </div>
           <h3>{anexo.titulo}</h3>
         </div>
@@ -182,7 +193,7 @@ function AnexoCard({ anexo }) {
         <span className="anexo-folio">{folioDe(anexo)}</span>
         <span className={`file-type ${extClass(anexo.extension)}`}>{anexo.extension}</span>
         <a className="btn btn-sm btn-primary" href={accion.url} target={accion.target} rel={accion.rel} download={accion.descargar || undefined}>
-          {etiquetaAccion(anexo)} ⟶
+          {etiquetaAccion(anexo, ui)} ⟶
         </a>
       </div>
     </div>

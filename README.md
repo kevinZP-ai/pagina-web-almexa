@@ -1,4 +1,4 @@
-# Web ALMEXA · Portafolio del Proyecto
+﻿# Web ALMEXA · Portafolio del Proyecto
 
 Página web de portafolio del proyecto **ALMEXA — Sistema de Gestión de Inventario y Bodega**.
 Proyecto formativo del programa ADSO, SENA CIES, ficha 3407799, Grupo 1.
@@ -21,7 +21,7 @@ npm run lint      # oxlint
 ## Estructura
 
 ```
-public/anexos/           Copia de los 39 documentos anexos del informe técnico
+public/anexos/           Copia de los 41 documentos anexos del informe técnico
 src/data/proyecto.js     Contenido del Informe Técnico ALMEXA
 src/data/anexos.js       Catálogo de anexos y categorías
 src/components/          Componentes de las secciones

@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
+import { useLang } from '../i18n/hook'
 
 export default function ToTop() {
+  const { site } = useLang()
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -14,8 +16,8 @@ export default function ToTop() {
     <button
       type="button"
       className={`to-top${visible ? ' visible' : ''}`}
-      aria-label="Volver al inicio"
-      title="Volver al inicio"
+      aria-label={site.ui.toTop}
+      title={site.ui.toTop}
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
     >
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
