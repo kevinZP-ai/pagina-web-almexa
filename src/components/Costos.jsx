@@ -139,7 +139,7 @@ export default function Costos() {
                   </thead>
                   <tbody>
                     {es.hardware.map((h) => (
-                      <tr key={h.equipo}>
+                      <tr key={`${h.equipo} · ${h.uso}`}>
                         <td>
                           <b>{h.equipo}</b>
                           <div className="cell-sub">{h.uso}</div>
