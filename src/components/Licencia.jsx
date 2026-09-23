@@ -21,7 +21,7 @@ export default function Licencia({ num = '08' }) {
             <div className="lic-links">
               <a
                 className="btn btn-sm btn-ghost"
-                href={`${import.meta.env.BASE_URL}anexos/08-Licencia/LICENCIA_BSL.txt`}
+                href={`${import.meta.env.BASE_URL}documentos/LICENCIA_BSL.txt`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -29,7 +29,7 @@ export default function Licencia({ num = '08' }) {
               </a>
               <a
                 className="btn btn-sm btn-ghost"
-                href={`${import.meta.env.BASE_URL}anexos/08-Licencia/LICENCIA_BSL_ES.txt`}
+                href={`${import.meta.env.BASE_URL}documentos/LICENCIA_BSL_ES.txt`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
