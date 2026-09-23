@@ -2,7 +2,7 @@
 import TableBox from './TableBox'
 import { useLang } from '../i18n/hook'
 
-export default function Requisitos() {
+export default function Requisitos({ num = '05' }) {
   const { site } = useLang()
   const { modulos, noFuncionales, ui } = site
   const sec = ui.sections.requisitos
@@ -10,7 +10,7 @@ export default function Requisitos() {
   return (
     <section id="requisitos" className="alt" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="05" title={sec.titulo} sub={sec.sub} />
+        <SectionHead num={num} title={sec.titulo} sub={sec.sub} />
         <div className="grid grid-3 mb-34">
           {modulos.map((m, i) => (
             <div className="card" key={m.id}>

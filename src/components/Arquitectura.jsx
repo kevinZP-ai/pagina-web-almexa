@@ -2,7 +2,7 @@
 import TableBox from './TableBox'
 import { useLang } from '../i18n/hook'
 
-export default function Arquitectura() {
+export default function Arquitectura({ num = '04' }) {
   const { site } = useLang()
   const { arquitectura, entidades, casosUso, ui } = site
   const sec = ui.sections.arquitectura
@@ -10,7 +10,7 @@ export default function Arquitectura() {
   return (
     <section id="arquitectura" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="04" title={sec.titulo} sub={sec.sub} />
+        <SectionHead num={num} title={sec.titulo} sub={sec.sub} />
         <p className="lead">{arquitectura.enfoque}</p>
         <div className="arch-caps mb-24">
           {arquitectura.capas.map((c, i) => (

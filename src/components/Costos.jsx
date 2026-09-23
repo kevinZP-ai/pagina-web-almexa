@@ -17,7 +17,7 @@ const SWATCH = {
 const pct = (c) => parseFloat(c.participacion.replace(',', '.'))
 const fmt = (n) => `${n.toLocaleString('es-CO', { maximumFractionDigits: 1 })}%`
 
-export default function Costos() {
+export default function Costos({ num = '07' }) {
   const { site } = useLang()
   const { costos, ui } = site
   const sec = ui.sections.costos
@@ -29,7 +29,7 @@ export default function Costos() {
   return (
     <section id="costos" className="alt" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="07" title={sec.titulo} sub={`${sec.sub} · ${costos.duracion}`} />
+        <SectionHead num={num} title={sec.titulo} sub={`${sec.sub} · ${costos.duracion}`} />
 
         <div className="tabs mb-18" role="tablist" aria-label={sec.titulo}>
           {costos.escenarios.map((s, i) => (

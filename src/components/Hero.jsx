@@ -38,7 +38,7 @@ const firma = (rol, nombres) => ({
 
 export default function Hero() {
   const { site } = useLang()
-  const { proyecto, anexos, ui } = site
+  const { proyecto, ui } = site
 
   return (
     <section id="inicio" className="hero" aria-label={ui.nav.inicio}>
@@ -88,15 +88,6 @@ export default function Hero() {
                 </span>
               ))}
             </div>
-          </div>
-
-          <div className="hero-cta">
-            <a className="btn btn-primary" href="#resumen">
-              {ui.hero.abrir}
-            </a>
-            <a className="btn btn-ghost" href="#anexos">
-              {ui.hero.verAnexos} ({anexos.length})
-            </a>
           </div>
 
           <div className="hero-signs">

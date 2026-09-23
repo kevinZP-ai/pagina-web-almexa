@@ -1,7 +1,7 @@
 ﻿import SectionHead from './SectionHead'
 import { useLang } from '../i18n/hook'
 
-export default function Objetivos() {
+export default function Objetivos({ num = '03' }) {
   const { site } = useLang()
   const { objetivos, ui } = site
   const sec = ui.sections.objetivos
@@ -9,7 +9,7 @@ export default function Objetivos() {
   return (
     <section id="objetivos" className="alt" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="03" title={sec.titulo} sub={sec.sub} />
+        <SectionHead num={num} title={sec.titulo} sub={sec.sub} />
         <div className="card mb-18">
           <div className="card-head">
             <div className="card-icon tone-0">G</div>

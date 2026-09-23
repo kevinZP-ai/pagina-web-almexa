@@ -306,3 +306,63 @@ export const versiones = [
   { version: '2.5', descripcion: 'Sustitución de la norma ISO 9001 por la ISO/IEC/IEEE 29148 (ingeniería de requisitos) en la sección 6 y en las referencias bibliográficas, alineando la documentación con el SRS.', autor: 'Grupo 1', fecha: '09/09/2026' },
   { version: '3.0', descripcion: 'Cierre trimestral: presupuesto a doble escenario de 6 meses (24 semanas): caso real Grupo 1 (2.160 h, $2.082.116, recursos humanos no remunerados) y caso ideal académico de 7 roles (2.160 h, $52.287.584) con tarifas de mercado 2026; licenciamiento provisional BSL 1.1 (Change Date 2030, GPL v2.0 o posterior); estadística de digitalización actualizada (Montero 2025, 63 %); columna de la matriz de riesgos renombrada a "Requerimiento afectado".', autor: 'Grupo 1', fecha: '19/09/2026' },
 ]
+
+export const estadoProyecto = {
+  fase: 'Cierre del proyecto formativo',
+  detalle:
+    'Los tres documentos del expediente (SRS, informe de análisis e informe técnico) consolidan el cierre del proyecto: ocho módulos funcionales validados, presupuesto a doble escenario y licencia BSL 1.1 provisional a la espera de la aprobación del SENA.',
+  items: [
+    { etiqueta: 'Presupuesto real', valor: '$2.082.116 COP' },
+    { etiqueta: 'Presupuesto ideal', valor: '$52.287.584 COP' },
+    { etiqueta: 'Duración', valor: '6 meses (24 semanas)' },
+    { etiqueta: 'Horas-persona', valor: '2.160 h' },
+    { etiqueta: 'Módulos validados', valor: '8 / 8' },
+    { etiqueta: 'Licencia', valor: 'BSL 1.1' },
+  ],
+}
+
+export const seccionesIndex = [
+  { to: '/srs', icono: 'S', descKey: 'seccionesSrs' },
+  { to: '/informe-analisis', icono: 'A', descKey: 'seccionesAnalisis' },
+  { to: '/informe-tecnico', icono: 'T', descKey: 'seccionesTecnico' },
+]
+
+export const analisis = {
+  actividades: [
+    { n: '01', actividad: 'Levantamiento de información y contexto de la bodega', descripcion: 'Caracterización del proceso de inventario y de los perfiles que intervienen (Administrador, Bodeguero, Técnico, Consultor).', entregable: 'SRS · contexto y actores' },
+    { n: '02', actividad: 'Definición de requisitos funcionales y no funcionales', descripcion: 'Especificación de los ocho módulos (RF1–RF8), 53 requisitos ERF1.1 a ERF8.4 y requisitos no funcionales RNF1–RNF7.', entregable: 'SRS · capítulos de requisitos' },
+    { n: '03', actividad: 'Modelado de casos de uso', descripcion: 'Casos de uso CU-01 a CU-08 más CU-04.4, correlacionados con módulos y actores.', entregable: 'Diagrama de casos de uso' },
+    { n: '04', actividad: 'Modelado de diagramas de actividad', descripcion: 'Diagramas de actividad DA-01 a DA-08, uno por módulo funcional.', entregable: 'Documentación de actividades' },
+    { n: '05', actividad: 'Modelado de dominio', descripcion: 'Identificación de las 12 entidades del dominio y sus relaciones.', entregable: 'Diagrama de dominio' },
+    { n: '06', actividad: 'Modelo entidad-relación y esquema físico', descripcion: 'DER con 13 tablas (12 entidades más la tabla puente RutaProducto).', entregable: 'DER y esquema físico' },
+    { n: '07', actividad: 'Prototipo funcional navegable', descripcion: 'Prototipo HTML de los ocho módulos para validar la experiencia de uso.', entregable: 'Prototipo navegable' },
+    { n: '08', actividad: 'Validación y trazabilidad de requisitos', descripcion: 'Contraste de cada requisito con sus artefactos (CU, DA, dominio, prototipo).', entregable: 'Informe de validación' },
+  ],
+  der: [
+    'Rol',
+    'Usuario',
+    'BitacoraAcceso',
+    'Reporte',
+    'Proveedor',
+    'Producto',
+    'MovimientoInventario',
+    'Ruta',
+    'RutaProducto',
+    'EspacioAlmacenamiento',
+    'EquipoBodega',
+    'SistemaExterno',
+    'TokenAPI',
+  ],
+  checklist: [
+    'SRS corregido con PostgreSQL como único motor',
+    '53 requisitos funcionales documentados (ERF1.1–ERF8.4)',
+    'Requisitos no funcionales RNF1–RNF7 definidos',
+    'Casos de uso CU-01 a CU-08 y CU-04.4 modelados',
+    'Diagramas de actividad DA-01 a DA-08 documentados',
+    'Modelo de dominio con 12 entidades',
+    'DER con 13 tablas (12 entidades + RutaProducto)',
+    'Prototipo funcional navegable',
+    'Trazabilidad SRS · CU · DA · dominio · DER',
+    'Validación funcional de los 8 módulos',
+  ],
+}

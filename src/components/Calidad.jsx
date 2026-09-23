@@ -23,7 +23,7 @@ function nivelBadge(nivel, ui) {
   return <span className={`badge ${clase}`}>{label}</span>
 }
 
-export default function Calidad() {
+export default function Calidad({ num = '06' }) {
   const { site } = useLang()
   const { qa, riesgos, ui } = site
   const sec = ui.sections.calidad
@@ -31,7 +31,7 @@ export default function Calidad() {
   return (
     <section id="calidad" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="06" title={sec.titulo} sub={sec.sub} />
+        <SectionHead num={num} title={sec.titulo} sub={sec.sub} />
 
         <h3 className="disp h3disp">{ui.calidad.normas}</h3>
         <div className="grid grid-3 mb-34">

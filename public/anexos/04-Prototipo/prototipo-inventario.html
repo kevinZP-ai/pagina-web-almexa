@@ -292,6 +292,7 @@ tr:hover td{background:rgba(255,255,255,0.02);}
     <div class="login-tag">A-01 · ACCESO</div>
     <h1>ALMEXA</h1>
     <div class="sub">Gestión de inventario, bodega y proveedores</div>
+    <div class="hint" style="margin-top:4px;">MODO DEMO · los datos mostrados son de ejemplo</div>
     <label>Usuario</label>
     <select id="loginUser">
       <option value="1">Kevin Ríos — Administrador</option>
@@ -622,6 +623,9 @@ let state = {
   nextId: {product:5, provider:3, route:3, space:5, user:5, movement:4},
 };
 
+/* Fecha "hoy" fija de la demostración: mantiene coherentes los datos de ejemplo (PRD, rutas y movimientos de julio 2026) */
+const DEMO_NOW = new Date('2026-07-21T09:00:00');
+
 /* ================= LOGIN ================= */
 function doLogin(){
   const uid = parseInt(document.getElementById('loginUser').value);
@@ -672,14 +676,14 @@ function toast(msg, isWarn){
   window._toastTimer=setTimeout(()=>t.classList.remove('show'), 2600);
 }
 function nowStr(){
-  const d=new Date();
+  const d=DEMO_NOW;
   return d.toLocaleDateString('es-CO')+' '+d.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
 }
 function money(n){return '$'+n.toLocaleString('es-CO');}
 function closeModal(id){document.getElementById(id).classList.remove('active');}
 function openModal(id){document.getElementById(id).classList.add('active');}
 function daysUntil(dateStr){
-  const diff = (new Date(dateStr) - new Date());
+  const diff = (new Date(dateStr) - DEMO_NOW);
   return Math.ceil(diff/(1000*60*60*24));
 }
 
@@ -700,8 +704,8 @@ function renderDashboard(){
   document.getElementById('statAlertas').textContent = alertCount;
   document.getElementById('badgeStock').textContent = alertCount;
   document.getElementById('badgeStock').classList.toggle('hidden', alertCount===0);
-  const today = new Date().toISOString().slice(0,10);
-  document.getElementById('statMov').textContent = state.movements.filter(m=>m.date.startsWith('2026-07-21')||m.date.startsWith(today)).length;
+  const today = DEMO_NOW.toISOString().slice(0,10);
+  document.getElementById('statMov').textContent = state.movements.filter(m=>m.date.startsWith(today)).length;
   const totalCap = state.spaces.reduce((a,s)=>a+s.capacity,0);
   const totalOcc = state.spaces.reduce((a,s)=>a+s.occupied,0);
   document.getElementById('statOcup').textContent = totalCap? Math.round(totalOcc/totalCap*100)+'%':'0%';
@@ -759,9 +763,10 @@ function renderProductos(){
       <td><span class="shelftag">${space?space.name:'—'}</span></td>
       <td>${statusBadge}</td>
       <td style="white-space:nowrap;">
-        <button class="btn btn-ghost btn-sm" onclick="openMoveModal(${p.id},'entrada')">Entrada</button>
-        <button class="btn btn-ghost btn-sm" onclick="openMoveModal(${p.id},'salida')">Salida</button>
-        <button class="btn btn-ghost btn-sm" onclick="editProduct(${p.id})">Editar</button>
+        ${currentUser.role==='Consultor' ? '<span class="muted">Solo lectura</span>' :
+          '<button class="btn btn-ghost btn-sm" onclick="openMoveModal('+p.id+',\'entrada\')">Entrada</button>'+
+          '<button class="btn btn-ghost btn-sm" onclick="openMoveModal('+p.id+',\'salida\')">Salida</button>'+
+          '<button class="btn btn-ghost btn-sm" onclick="editProduct('+p.id+')">Editar</button>'}
       </td>
     </tr>`;
   }).join('');
@@ -885,7 +890,7 @@ function renderProviders(){
       <td>${p.contact}</td>
       <td class="mono">${assoc} producto(s)</td>
       <td><span class="tag-badge ${p.active?'badge-ok':'badge-idle'}">${p.active?'Activo':'Inactivo'}</span></td>
-      <td><button class="btn btn-ghost btn-sm" onclick="toggleProvider(${p.id})">${p.active?'Desactivar':'Activar'}</button></td>
+      <td>${currentUser.role==='Consultor' ? '<span class="muted">Solo lectura</span>' : '<button class="btn btn-ghost btn-sm" onclick="toggleProvider('+p.id+')">'+(p.active?'Desactivar':'Activar')+'</button>'}</td>
     </tr>`;
   }).join('');
 }
@@ -922,8 +927,9 @@ function renderRoutes(){
       <td class="mono">${r.products}</td>
       <td><span class="tag-badge ${badge}">${r.status}</span></td>
       <td>
-        <button class="btn btn-ghost btn-sm" onclick="markDelayed(${r.id})">Marcar retrasada</button>
-        <button class="btn btn-ghost btn-sm" onclick="markDelivered(${r.id})">Entregada</button>
+        ${currentUser.role==='Consultor' ? '<span class="muted">Solo lectura</span>' :
+          '<button class="btn btn-ghost btn-sm" onclick="markDelayed('+r.id+')">Marcar retrasada</button>'+
+          '<button class="btn btn-ghost btn-sm" onclick="markDelivered('+r.id+')">Entregada</button>'}
       </td>
     </tr>`;
   }).join('');
@@ -956,7 +962,7 @@ function renderUsers(){
       <td class="mono">${u.email}</td>
       <td><span class="tag-badge badge-amber">${u.role}</span></td>
       <td><span class="tag-badge ${u.active?'badge-ok':'badge-idle'}">${u.active?'Activo':'Inactivo'}</span></td>
-      <td><button class="btn btn-ghost btn-sm" onclick="toggleUser(${u.id})">${u.active?'Desactivar':'Activar'}</button></td>
+      <td>${currentUser.role==='Consultor' ? '<span class="muted">Solo lectura</span>' : '<button class="btn btn-ghost btn-sm" onclick="toggleUser('+u.id+')">'+(u.active?'Desactivar':'Activar')+'</button>'}</td>
     </tr>`).join('');
   document.getElementById('logList').innerHTML = state.accessLog.slice(0,8).map(l=>`<div>${l}</div>`).join('') || '<div>Sin accesos registrados aún.</div>';
 }

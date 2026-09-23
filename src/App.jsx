@@ -1,37 +1,37 @@
+import { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import BodegaBg from './components/BodegaBg'
 import ScrollStamp from './components/ScrollStamp'
-import Hero from './components/Hero'
-import Resumen from './components/Resumen'
-import Introduccion from './components/Introduccion'
-import Objetivos from './components/Objetivos'
-import Arquitectura from './components/Arquitectura'
-import Requisitos from './components/Requisitos'
-import Calidad from './components/Calidad'
-import Costos from './components/Costos'
-import Licencia from './components/Licencia'
-import Conclusiones from './components/Conclusiones'
-import Anexos from './components/Anexos'
 import Footer from './components/Footer'
 import ToTop from './components/ToTop'
+import Index from './components/pages/Index'
+import Srs from './components/pages/Srs'
+import Analisis from './components/pages/Analisis'
+import Tecnico from './components/pages/Tecnico'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname])
+  return null
+}
 
 export default function App() {
   return (
     <>
       <BodegaBg />
+      <ScrollToTop />
       <Navbar />
       <main>
-        <Hero />
-        <Resumen />
-        <Introduccion />
-        <Objetivos />
-        <Arquitectura />
-        <Requisitos />
-        <Calidad />
-        <Costos />
-        <Licencia />
-        <Conclusiones />
-        <Anexos />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/srs" element={<Srs />} />
+          <Route path="/informe-analisis" element={<Analisis />} />
+          <Route path="/informe-tecnico" element={<Tecnico />} />
+          <Route path="*" element={<Index />} />
+        </Routes>
       </main>
       <Footer />
       <ToTop />

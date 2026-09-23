@@ -2,7 +2,7 @@
 import TableBox from './TableBox'
 import { useLang } from '../i18n/hook'
 
-export default function Licencia() {
+export default function Licencia({ num = '08' }) {
   const { site } = useLang()
   const { licencia, versiones, ui } = site
   const sec = ui.sections.licencia
@@ -10,7 +10,7 @@ export default function Licencia() {
   return (
     <section id="licencia" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="08" title={sec.titulo} sub={sec.sub} />
+        <SectionHead num={num} title={sec.titulo} sub={sec.sub} />
         <div className="lic-card mb-34">
           <div className="lic-big">
             <div className="lic-name">{licencia.nombre}</div>
@@ -21,7 +21,7 @@ export default function Licencia() {
             <div className="lic-links">
               <a
                 className="btn btn-sm btn-ghost"
-                href="/anexos/08-Licencia/LICENCIA_BSL.txt"
+                href={`${import.meta.env.BASE_URL}anexos/08-Licencia/LICENCIA_BSL.txt`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -29,7 +29,7 @@ export default function Licencia() {
               </a>
               <a
                 className="btn btn-sm btn-ghost"
-                href="/anexos/08-Licencia/LICENCIA_BSL_ES.txt"
+                href={`${import.meta.env.BASE_URL}anexos/08-Licencia/LICENCIA_BSL_ES.txt`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

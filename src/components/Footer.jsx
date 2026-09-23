@@ -1,4 +1,5 @@
 ﻿import { useLang } from '../i18n/hook'
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
   const { site } = useLang()
@@ -26,7 +27,7 @@ export default function Footer() {
           <br />
           {ui.footer.fin} · {proyecto.fecha} · {ui.footer.folio}
           <br />
-          <a href="#inicio" className="f-top">{ui.footer.volver}</a>
+          <Link to="/" className="f-top">{ui.footer.volver}</Link>
         </div>
       </div>
     </footer>

@@ -1,7 +1,7 @@
 ﻿import SectionHead from './SectionHead'
 import { useLang } from '../i18n/hook'
 
-export default function Conclusiones() {
+export default function Conclusiones({ num = '09' }) {
   const { site } = useLang()
   const { conclusiones, recomendaciones, ui } = site
   const sec = ui.sections.conclusiones
@@ -9,7 +9,7 @@ export default function Conclusiones() {
   return (
     <section id="conclusiones" className="alt" aria-label={sec.titulo}>
       <div className="wrap">
-        <SectionHead num="09" title={sec.titulo} sub={sec.sub} />
+        <SectionHead num={num} title={sec.titulo} sub={sec.sub} />
         <div className="grid grid-2">
           <div>
             <h3 className="disp h3disp">{ui.conclusiones.conclusiones}</h3>
